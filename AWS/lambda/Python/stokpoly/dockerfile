@@ -1,0 +1,25 @@
+#Author:rangapv@yahoo.com
+#26-11-24
+#debian based so apt-get works
+
+FROM python:3.13.0-slim-bookworm AS build
+
+RUN apt update
+
+RUN apt install -y vim
+
+COPY requirements.txt /tmp/requirements.txt
+
+WORKDIR /tmp
+
+RUN pip3 install -r requirements.txt
+
+ENV LAMBDA_TASK_ROOT="/usr"
+
+COPY ./stokpoly.py /usr/
+
+WORKDIR /usr
+
+ENTRYPOINT ["python3", "-m", "awslambdaric"]
+
+CMD ["stokpoly.handler"]
