@@ -11,6 +11,7 @@ import time
 import datetime
 from dotenv import load_dotenv
 from numerize import numerize
+from operator import itemgetter
 
 load_dotenv()
 
@@ -41,11 +42,14 @@ class fetch:
        #print(list(stock_dict1.values())[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
-       #print(myList)
+       #print(myList1)
 
        uplist = sorted(myList1,key=lambda x: x[1])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
-
+       
+       # uplist = sorted(myList1,key=itemgetter(1))
+       # revlist = sorted(myList1,key=itemgetter(1), reverse=True)
+       
        myList.sort()
        myList1.sort()
 
@@ -80,6 +84,10 @@ class fetch:
          aggs = client11.get_previous_close_agg(x)
          details = client11.get_ticker_details(x)
          detailcap = details.market_cap
+         #print(f'{x} marketcap is{detailcap}')
+         if detailcap==None:
+            #print('insode details')
+            detailcap = 0
          aggs1 = aggs[0]
          pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
          l21 = pl.stdout
