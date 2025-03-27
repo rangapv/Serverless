@@ -117,7 +117,7 @@ if __name__ == "__main__":
  stock_dict = {}
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  new24_dict = p1.getit(client1,list1,stock_dict)
- list2 = ["SNOW","BRK.B","LLY","AVGO","DE"]
+ list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
  time.sleep(60)
  new25_dict = p1.getit(client1,list2,new24_dict)
  p1.ascend(new25_dict)
