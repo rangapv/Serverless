@@ -81,13 +81,31 @@ class fetch:
        #self.list2 = list21
        #print(stock_dict2)
        for x in list21:
+         #print(f'getting quote for {x}')
          aggs = client11.get_previous_close_agg(x)
          details = client11.get_ticker_details(x)
          detailcap = details.market_cap
          #print(f'{x} marketcap is{detailcap}')
          if detailcap==None:
             #print('insode details')
-            detailcap = 0
+            p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
+            l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
+            #print(l23)
+            p5 = l23.stdout
+            #print(p5)
+            r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
+            l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)
+            #print(l24)
+            p6 = l24.stdout
+            #print(p6)
+            outstand1 = client11.get_ticker_details(x)
+            share_outstand = outstand1.share_class_shares_outstanding
+            num1 = float(p6)
+            num2 = float(share_outstand)
+            marketcap = ( num1 * num2 )
+            print(marketcap)
+            detailcap = marketcap
+
          aggs1 = aggs[0]
          pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
          l21 = pl.stdout
@@ -118,6 +136,9 @@ if __name__ == "__main__":
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
  new24_dict = p1.getit(client1,list1,stock_dict)
  list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
- time.sleep(60)
+ time.sleep(80)
  new25_dict = p1.getit(client1,list2,new24_dict)
- p1.ascend(new25_dict)
+ list3 = ["SNOW","DE","CTSH","ACN"]
+ time.sleep(60)
+ new26_dict = p1.getit(client1,list3,new25_dict)
+ p1.ascend(new26_dict)
