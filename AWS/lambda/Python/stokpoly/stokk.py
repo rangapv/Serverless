@@ -76,16 +76,21 @@ class fetch:
          valueprev = value
          i = i + 1
 
-    def getit(self,client11,list21,stock_dict2):
+    def getit(self,client11,list21,stock_dict2,apicount):
        #list2 = ["SNOW","BRK.B"]
        #self.list2 = list21
        #print(stock_dict2)
        for x in list21:
          #print(f'getting quote for {x}')
          aggs = client11.get_previous_close_agg(x)
-         details = client11.get_ticker_details(x)
-         detailcap = details.market_cap
+         apicount += 1
+         #details = client11.get_ticker_details(x)
+         outstand1 = client11.get_ticker_details(x)
+         apicount += 1
+         detailcap = outstand1.market_cap
          #print(f'{x} marketcap is{detailcap}')
+         if (apicount % 5 == 0):
+            time.sleep(60)
          if detailcap==None:
             #print('insode details')
             p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
@@ -98,12 +103,11 @@ class fetch:
             #print(l24)
             p6 = l24.stdout
             #print(p6)
-            outstand1 = client11.get_ticker_details(x)
             share_outstand = outstand1.share_class_shares_outstanding
             num1 = float(p6)
             num2 = float(share_outstand)
             marketcap = ( num1 * num2 )
-            print(marketcap)
+            #print(marketcap)
             detailcap = marketcap
 
          aggs1 = aggs[0]
@@ -126,19 +130,20 @@ class fetch:
 if __name__ == "__main__":
  p1 = fetch()
  #print (f'client is {p1}')
+ apicount = 0
  API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
-
+ apicount += 1
  aggs = []
  #list1 = ["META", "NVDA","AAPL"]
  stock_dict = {}
  list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
- new24_dict = p1.getit(client1,list1,stock_dict)
+ new24_dict = p1.getit(client1,list1,stock_dict,apicount)
  list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
- time.sleep(80)
- new25_dict = p1.getit(client1,list2,new24_dict)
+ time.sleep(10)
+ new25_dict = p1.getit(client1,list2,new24_dict,apicount)
  list3 = ["SNOW","DE","CTSH","ACN"]
- time.sleep(60)
- new26_dict = p1.getit(client1,list3,new25_dict)
+ time.sleep(10)
+ new26_dict = p1.getit(client1,list3,new25_dict,apicount)
  p1.ascend(new26_dict)

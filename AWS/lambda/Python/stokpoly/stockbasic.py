@@ -47,6 +47,9 @@ p6 = l24.stdout
 print(p6)
 
 outstand1 = client.get_ticker_details(ticker)
+print("outstand output is")
+print(outstand1)
+
 share_outstand = outstand1.share_class_shares_outstanding
 
 num1 = float(p6)
