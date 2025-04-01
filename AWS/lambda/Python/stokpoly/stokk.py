@@ -147,13 +147,13 @@ def handler(event, context):
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- list1 = ["META", "NVDA","AAPL","GOOG"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
  list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
  time.sleep(10)
  new25_dict = p1.getit(client1,list2,new24_dict,apicount)
- list3 = ["SNOW","DE","CTSH","ACN"]
+ list3 = ["SNOW","DE","CTSH","ACN","CRWV"]
  time.sleep(10)
  new26_dict = p1.getit(client1,list3,new25_dict,apicount)
  print('before ascend')
