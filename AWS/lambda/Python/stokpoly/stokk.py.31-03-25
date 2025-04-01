@@ -37,23 +37,28 @@ class fetch:
        print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
 
     def ascend(self,stock_dict1):
-       #print(stock_dict1)
-       #print((stock_dict1.values()))
-       #print(list(stock_dict1.values())[1])
+       print(stock_dict1)
+       #print((stock_dict1.keys values[0,1]))
+       #print((stock_dict1.values())[1])
+       print(list(stock_dict1.values())[1])
+       datelist = (list(stock_dict1.values())[1])
+       print(datelist[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
-       #print(myList1)
+       print(myList)
+       print(myList1)
 
        uplist = sorted(myList1,key=lambda x: x[1])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
        
        # uplist = sorted(myList1,key=itemgetter(1))
        # revlist = sorted(myList1,key=itemgetter(1), reverse=True)
-       
+       print('before stock_dict')
+       #print(stock_dict1.keys [1][0])
        myList.sort()
        myList1.sort()
 
-       print(f'TOP most-valuable-company from the list\n')
+       print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
        for key,value in revlist:
          print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
@@ -138,12 +143,12 @@ if __name__ == "__main__":
  aggs = []
  #list1 = ["META", "NVDA","AAPL"]
  stock_dict = {}
- list1 = ["AAPL", "NVDA", "META", "AMZN", "GOOG" ]
+ list1 = ["AAPL", "NVDA"]
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
- list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
- time.sleep(10)
- new25_dict = p1.getit(client1,list2,new24_dict,apicount)
- list3 = ["SNOW","DE","CTSH","ACN"]
- time.sleep(10)
- new26_dict = p1.getit(client1,list3,new25_dict,apicount)
- p1.ascend(new26_dict)
+ #list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
+ #time.sleep(10)
+ #new25_dict = p1.getit(client1,list2,new24_dict,apicount)
+ #list3 = ["SNOW","DE","CTSH","ACN"]
+ #time.sleep(10)
+ #new26_dict = p1.getit(client1,list3,new25_dict,apicount)
+ p1.ascend(new24_dict)

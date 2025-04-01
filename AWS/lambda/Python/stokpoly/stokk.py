@@ -44,7 +44,7 @@ class fetch:
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
        #print(myList1)
-
+       datelist = (list(stock_dict1.values())[1])
        uplist = sorted(myList1,key=lambda x: x[1])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
        
@@ -54,10 +54,10 @@ class fetch:
        myList.sort()
        myList1.sort()
 
-       print(f'TOP most-valuable-company from the list\n')
+       print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
        newlist = []
-       newlist.append('TOP most-valuable-company from the list')
+       newlist.append('TOP most-valuable-company from the list as of {datelist[1]}')
        for key,value in revlist:
          print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
          newlist.append(f'{i}. {key} with the value $ {numerize.numerize(value,4)}')
