@@ -57,7 +57,7 @@ class fetch:
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
        newlist = []
-       newlist.append('TOP most-valuable-company from the list as of {datelist[1]}')
+       newlist.append(f'TOP most-valuable-company from the list as of {datelist[1]}')
        for key,value in revlist:
          print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
          newlist.append(f'{i}. {key} with the value $ {numerize.numerize(value,4)}')
