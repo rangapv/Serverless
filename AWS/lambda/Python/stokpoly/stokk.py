@@ -128,7 +128,11 @@ class fetch:
          p5 = l23.stdout
          now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
          now2 = datetime.datetime.now().strftime('%d-%m-%y')
-         stock_dict2 = { **stock_dict2, x : [ detailcap , now2 ] }
+         t21 = p5[:10]
+         t1 = int(t21)
+         print(f't1 is {t1}')
+         t2 = time.ctime(t1)
+         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 ] }
          #p1.printout()
          #print(stock_dict2)
        return stock_dict2
