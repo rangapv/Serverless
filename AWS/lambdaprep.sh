@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
 #author:rangapv@yahoo.com
 
+
+awscli() {
+awse1=`which aws`
+awse1s="$?"
+if [[ (( $awse1s -ne 0 )) ]]
+then
+
+awscli1=`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" >/dev/null 2>&1`
+
+awscli2=`sudo apt install unzip -y >/dev/null 2>&1`
+
+awscli3=`unzip ./awscliv2.zip >/dev/null 2>&1`
+
+awscli4=`sudo ./aws/install >/dev/null 2>&1`
+else
+	echo "aws cli is installed in this box proceeding with other config "
+fi
+}
+ 
 aws_configure() {
 echo "enter the aws account access-id "
 read accid
@@ -56,6 +75,8 @@ else
 fi
         echo "$ecrl1"
 }
+
+awscli
 
 aws_configure
 
