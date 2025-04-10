@@ -43,17 +43,22 @@ class fetch:
        #print(list(stock_dict1.values())[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
-       #print(myList1)
+       print(f'mylist`1 is {myList1}')
+       print(myList1)
        datelist = (list(stock_dict1.values())[1])
        uplist = sorted(myList1,key=lambda x: x[1])
+       aplist = sorted(myList1,key=lambda x: x[0])
+      # dplist = sorted(stock_dict1 [i],key=lambda x: x[][0])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
-       
+       print(f'aplist is {aplist}')
+       #print(f'dplist is {dplist}')
+       #dollar_club(stock_dict1) 
        # uplist = sorted(myList1,key=itemgetter(1))
        # revlist = sorted(myList1,key=itemgetter(1), reverse=True)
        
        myList.sort()
        myList1.sort()
-
+       i = 1
        print('inside stocks')
        cap0 = numerize.numerize(500000000000,4)
        cap4 = numerize.numerize(4000000000000,4)
@@ -67,22 +72,22 @@ class fetch:
        bblist = []
        btlist = []
        for x,y in stock_dict1.items():
-           if 1000000000000 <= y[0] <= 2000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap1} Club")
+           if 1000000000000 <= y[0] <= 2000000000000:  
+            print (f"The company with tickr {x} are in the  ${cap1} Club")  
             onetlist.append(x)
-            #print (f"{i}. {x} with the value ${y}")
+            #print (f"{i}. {x} with the value ${y}")  
          #valueprev = value
            if 2000000000000 <= y[0] <= 3000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap2} Club")
+            print (f"The company with tickr {x} are in the  ${cap2} Club")
             twotlist.append(x)
            if 500000000000 <= y[0] <= 1000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap0} Club")
+            print (f"The company with tickr {x} are in the  ${cap0} Club")
             bblist.append(x)
            if 0 <= y[0] <= 500000000000:
-            #print (f"The company with tickr {x} are in the  SUB ${cap0} Club")
+            print (f"The company with tickr {x} are in the  SUB ${cap0} Club")
             btlist.append(x)
            if 3000000000000 < y[0]:
-            #print (f"The company with tickr {x} are in the  SUB ${cap3} Club")
+            print (f"The company with tickr {x} are in the  SUB ${cap3} Club")
             threetlist.append(x)
 
        print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
@@ -92,6 +97,8 @@ class fetch:
        print(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are ', btlist)
        #print(f'The companies in the $ {cap1} Club are ', onelist)
 
+
+       i = i + 1
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
@@ -111,21 +118,15 @@ class fetch:
          i = i - 1 
        #p1.diff(revlist)
 
+
        newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
        newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
-       newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
-       newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are {bblist}')
-       newlist.append(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are {btlist}')
+       #newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are', threetlist)
+       #newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are ', bblist)
+       #newlist.append(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are ', btlist)
 
        return newlist
 
-    def diff(self,dict2):
-       print(dict2)
-       i = 1
-       for key,value in dict2:
-         print (f"{i}. {key} with the value ${numerize.numerize(value,3)}")  
-         valueprev = value
-         i = i + 1
 
     def getit(self,client11,list21,stock_dict2,apicount):
        #list2 = ["SNOW","BRK.B"]
@@ -181,11 +182,20 @@ class fetch:
          stock_dict2 = { **stock_dict2, x : [ detailcap , t2 ] }
          #p1.printout()
          #print(stock_dict2)
+       
        return stock_dict2
 
+    def dollar_club(self,disct2):
+       print('inside club')
+       count1 = ()       
+       #mlist1 = (list(disct2.values())[0])
+       #newlist = list(keys, for key in disct2 i[0])
+       for key,values in disct2:
+           print (f'keys is {key} and values is {values}')
+
 #main BEGINS
-#if __name__ == "__main__":
-def handler(event, context):
+if __name__ == "__main__":
+#def handler(event, context):
  #r2 = imagels()
  #return r2
  print('inside handler')
@@ -197,16 +207,17 @@ def handler(event, context):
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN"]
+ #list1 = ["META", "NVDA","CRWV","MSFT","AVGO","NFLX","SNOW"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
- list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
- time.sleep(10)
- new25_dict = p1.getit(client1,list2,new24_dict,apicount)
- list3 = ["SNOW","DE","CTSH","ACN","CRWV"]
- time.sleep(10)
- new26_dict = p1.getit(client1,list3,new25_dict,apicount)
+ #list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
+ #time.sleep(10)
+ #new25_dict = p1.getit(client1,list2,new24_dict,apicount)
+ #list3 = ["SNOW","DE","CTSH","ACN","CRWV"]
+ #time.sleep(10)
+ #new26_dict = p1.getit(client1,list3,new25_dict,apicount)
  print('before ascend')
- rt = p1.ascend(new26_dict)
+ rt = p1.ascend(new24_dict)
 # p1.printout()
- return rt
+#return rt
