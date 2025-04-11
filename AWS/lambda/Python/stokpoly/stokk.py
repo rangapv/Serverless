@@ -110,7 +110,9 @@ class fetch:
          valueprev = value
          i = i - 1 
        #p1.diff(revlist)
-
+       newlist.append(f'')
+       newlist.append(f'')
+       newlist.append(f'')
        newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
        newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
        newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
@@ -197,16 +199,10 @@ def handler(event, context):
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN"]
+ #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
- list2 = ["TSLA","BRK.B","MSFT","AVGO","NFLX"]
- time.sleep(10)
- new25_dict = p1.getit(client1,list2,new24_dict,apicount)
- list3 = ["SNOW","DE","CTSH","ACN","CRWV"]
- time.sleep(10)
- new26_dict = p1.getit(client1,list3,new25_dict,apicount)
- print('before ascend')
- rt = p1.ascend(new26_dict)
+ rt = p1.ascend(new24_dict)
 # p1.printout()
  return rt
