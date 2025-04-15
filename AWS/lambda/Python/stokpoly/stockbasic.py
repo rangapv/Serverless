@@ -87,9 +87,17 @@ t2 = time.ctime(t1)
 #clostime = datetime.datetime.fromtimestamp(t1).strftime('%c')
 #print(f'closttime is {clostime}')
 print(f't2 is {t2}')
+print('')
+print("")
+print(None)
+print('\n')
+print('hi')
     #return marketcap
 #outstanding = details.share_class_shares_outstanding
-
+list4 = [1]
+list4.append(NULL)
+list4.append(2)
+print(list4)
 #print (details)
 #detailcap = details.market_cap
 #print (detailcap)

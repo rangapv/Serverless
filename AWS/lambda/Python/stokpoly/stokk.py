@@ -110,10 +110,14 @@ class fetch:
          valueprev = value
          i = i - 1 
        #p1.diff(revlist)
-       newlist.append(f'')
-       newlist.append(f'')
-       newlist.append(f'')
-       newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
+       #newlist.append(None)
+       #newlist.append(None)
+       now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+       now2 = datetime.datetime.now().strftime('%d-%m-%y')
+       newlist.append('')
+       newlist.append('')
+       newlist.append('')
+       newlist.append(f'The Market Capitalization as of {now2}')
        newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
        newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
        newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are {bblist}')
