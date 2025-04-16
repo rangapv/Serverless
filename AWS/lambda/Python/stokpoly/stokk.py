@@ -118,8 +118,11 @@ class fetch:
        newlist.append('')
        newlist.append('')
        newlist.append(f'The Market Capitalization as of {now2}')
-       newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
+       newlist.append('')
+       newlist.append('')
        newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
+       newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
+       newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
        newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are {bblist}')
        newlist.append(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are {btlist}')
 
