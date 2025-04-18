@@ -2,11 +2,15 @@
 #author:rangapv@yahoo.com
 #17-04-25
 
+source <(curl -s https://raw.githubusercontent.com/rangapv/Serverless/refs/heads/main/AWS/lambda/Python/stokpoly/pkgchk.sh) > /dev/null 2>&1
+
 tag1="stok1"
 region2="us-west-2"
 funcname="web2"
 account1="639266437671"
 repo="web1"
+
+chkifinsta aws docker 
 
 echo "This build will deploy lambda in the region ${region2} at a Function-named ${funcname} in the account# ${account1}"
 echo "if you need to deploy at a different account press y"
@@ -53,6 +57,7 @@ bld2=`docker tag ${tag1}:latest ${account1}.dkr.ecr.${region2}.amazonaws.com/${r
 bld2s="$?"
         if [[ "$bld2s" == "0" ]]
         then
+		bldauth=`aws ecr get-login-password --region ${region2} | docker login --username AWS --password-stdin ${account1}.dkr.ecr.${region2}.amazonaws.com`
                 bld3=`docker push ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
                 bld3s="$?"
                 if [[ "$bld3s" == "0" ]] 
