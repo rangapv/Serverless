@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 #author:rangapv@yahoo.com
 #14-11-24
 
@@ -7,7 +7,7 @@ import re
 import subprocess
 from polygon import RESTClient
 import time
-from polygon.rest import models
+#from polygon.rest import models
 
 import datetime
 from dotenv import load_dotenv
@@ -95,7 +95,6 @@ print('hi')
     #return marketcap
 #outstanding = details.share_class_shares_outstanding
 list4 = [1]
-list4.append(NULL)
 list4.append(2)
 print(list4)
 #print (details)

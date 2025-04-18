@@ -42,25 +42,24 @@ class fetch:
        #print((stock_dict1.values()))
        #print(list(stock_dict1.values())[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
-       myList1 = [(i,stock_dict1 [i][0]) for i in sorted(stock_dict1.keys()) ]
+       myList1 = [(i,stock_dict1 [i][0],stock_dict1 [i][2]) for i in sorted(stock_dict1.keys()) ]
        #print(myList1)
        datelist = (list(stock_dict1.values())[1])
        uplist = sorted(myList1,key=lambda x: x[1])
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
-       
+      
        # uplist = sorted(myList1,key=itemgetter(1))
        # revlist = sorted(myList1,key=itemgetter(1), reverse=True)
        
        myList.sort()
        myList1.sort()
 
-       print('inside stocks')
        cap0 = numerize.numerize(500000000000,4)
        cap4 = numerize.numerize(4000000000000,4)
        cap3 = numerize.numerize(3000000000000,4)
        cap2 = numerize.numerize(2000000000000,4)
        cap1 = numerize.numerize(1000000000000,4)
-       print(f'cap3 is {cap3}')
+       #print(f'cap3 is {cap3}')
        onetlist = []
        twotlist = []
        threetlist = []
@@ -97,18 +96,17 @@ class fetch:
        i = 1
        newlist = []
        newlist.append(f'TOP most-valuable-company from the list as of {datelist[1]}')
-       for key,value in revlist:
-         print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
-         newlist.append(f'{i}. {key} with the value $ {numerize.numerize(value,4)}')
-         valueprev = value
+       for x in revlist:
+         print (f"{i}. {x[0]} @ {x[2]} with the value $ {numerize.numerize(x[1],4)}")
+         newlist.append(f'{i}. {x[0]} @ {x[2]} closing with the value $ {numerize.numerize(x[1],4)}')
          i = i + 1  
       
-       print(f'Ascending order most-valuable-company from the list\n')
-       i = len(uplist) 
-       for key,value in uplist:
-         print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
-         valueprev = value
-         i = i - 1 
+       #print(f'Ascending order most-valuable-company from the list\n')
+       #i = len(uplist) 
+       #for key,value in uplist:
+       #  print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
+       #@  valueprev = value
+       #  i = i - 1 
        #p1.diff(revlist)
        #newlist.append(None)
        #newlist.append(None)
@@ -125,7 +123,7 @@ class fetch:
        newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
        newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are {bblist}')
        newlist.append(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are {btlist}')
-
+      # print(newlist)
        return newlist
 
     def diff(self,dict2):
@@ -147,32 +145,34 @@ class fetch:
          apicount += 1
          #details = client11.get_ticker_details(x)
          outstand1 = client11.get_ticker_details(x)
+         #print(f'outstand values {outstand1}')
          apicount += 1
          detailcap = outstand1.market_cap
          print(f'{x} marketcap is{detailcap}')
+         p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
+         l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
+         print(l23)
+         p5 = l23.stdout
+         #print(p5)
+         r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
+         l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)
+         #print(l24)
+         p6 = l24.stdout
+         #print(f'tickr is {p6}')
+         share_outstand = outstand1.share_class_shares_outstanding
+         num1 = float(p6)
+         num2 = float(share_outstand)
+         marketcap = ( num1 * num2 )
+         detailcap = marketcap
+         #print(marketcap)
          if (apicount % 5 == 0):
             time.sleep(60)
-         if detailcap==None:
-            print('insode details')
-            p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
-            l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
-            print(l23)
-            p5 = l23.stdout
-            print(p5)
-            r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
-            l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)
-            print(l24)
-            p6 = l24.stdout
-            print(p6)
-            share_outstand = outstand1.share_class_shares_outstanding
-            num1 = float(p6)
-            num2 = float(share_outstand)
-            marketcap = ( num1 * num2 )
-            print(marketcap)
-            detailcap = marketcap
+         #if detailcap==None:
+         #   print('insode details')
+         #   detailcap = marketcap
 
          aggs1 = aggs[0]
-         print(f'aggs1 is {aggs1}')
+         #print(f'aggs1 is {aggs1}')
          pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
          l21 = pl.stdout
          p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
@@ -185,9 +185,8 @@ class fetch:
          now2 = datetime.datetime.now().strftime('%d-%m-%y')
          t21 = p5[:10]
          t1 = int(t21)
-         print(f't1 is {t1}')
          t2 = time.ctime(t1)
-         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 ] }
+         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1] }
          #p1.printout()
          #print(stock_dict2)
        return stock_dict2
@@ -197,16 +196,16 @@ class fetch:
 def handler(event, context):
  #r2 = imagels()
  #return r2
- print('inside handler')
+ #print('inside handler')
  p1 = fetch()
- print (f'client is {p1}')
+ #print (f'client is {p1}')
  apicount = 0
  API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN"]
+# list1 = ["META","NVDA","AAPL", "AMZN"]
  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
