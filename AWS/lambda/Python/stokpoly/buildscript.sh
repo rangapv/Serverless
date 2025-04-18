@@ -58,6 +58,14 @@ bld2s="$?"
         if [[ "$bld2s" == "0" ]]
         then
 		bldauth=`aws ecr get-login-password --region ${region2} | docker login --username AWS --password-stdin ${account1}.dkr.ecr.${region2}.amazonaws.com`
+		bldauths="$?"
+        	if [[ "$bldauths" == "0" ]]
+                then
+			echo "aws ecr re-auth passed proceeding "
+		else
+			echo "aws ecr re-auth failed pls chk ${bldauth}"
+			exit
+		fi
                 bld3=`docker push ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
                 bld3s="$?"
                 if [[ "$bld3s" == "0" ]] 
