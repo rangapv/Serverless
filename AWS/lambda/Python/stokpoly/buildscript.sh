@@ -32,12 +32,8 @@ else
        echo "proceeding with build..."
 fi
 
-
 bld1=`docker build -t ${tag1} .`
 bld1s="$?"
-
-
-tag1="stok1"
 
 while :
 do

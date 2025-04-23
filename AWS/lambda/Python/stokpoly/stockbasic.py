@@ -21,7 +21,7 @@ API_KEY = os.getenv('API_POLYGON')
     #API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
-ticker = "META" 
+ticker = "BRK.C" 
     #ticker = input("Enter the Ticker for which you need the Marketcap:")
 aggs = client.get_aggs(
         ticker,
@@ -52,13 +52,15 @@ p6 = l24.stdout
 print(p6)
 
 outstand1 = client.get_ticker_details(ticker)
-    #print("outstand output is")
-    #print(outstand1)
+print(f'tickr details aggs are {outstand1}')
 
-share_outstand = outstand1.share_class_shares_outstanding
+#share_outstand = outstand1.share_class_shares_outstanding
+share_outstand = outstand1.weighted_shares_outstanding
 
 num1 = float(p6)
 num2 = float(share_outstand)
+print("outstand output is")
+print(num2)
 
 marketcap = ( num1 * num2 )
 

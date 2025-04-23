@@ -147,8 +147,8 @@ class fetch:
          outstand1 = client11.get_ticker_details(x)
          #print(f'outstand values {outstand1}')
          apicount += 1
-         detailcap = outstand1.market_cap
-         print(f'{x} marketcap is{detailcap}')
+         detailcap1 = outstand1.market_cap
+         print(f'{x} marketcap is{detailcap1}')
          p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
          l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
          print(l23)
@@ -159,7 +159,8 @@ class fetch:
          #print(l24)
          p6 = l24.stdout
          #print(f'tickr is {p6}')
-         share_outstand = outstand1.share_class_shares_outstanding
+         #share_outstand = outstand1.share_class_shares_outstanding
+         share_outstand = outstand1.weighted_shares_outstanding
          num1 = float(p6)
          num2 = float(share_outstand)
          marketcap = ( num1 * num2 )
@@ -167,9 +168,11 @@ class fetch:
          #print(marketcap)
          if (apicount % 5 == 0):
             time.sleep(60)
-         #if detailcap==None:
+         if detailcap1 > marketcap:
          #   print('insode details')
-         #   detailcap = marketcap
+            detailcap = marketcap 
+         else:
+            detailcap = detailcap1
 
          aggs1 = aggs[0]
          #print(f'aggs1 is {aggs1}')
@@ -205,7 +208,7 @@ if __name__ == "__main__":
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
-# list1 = ["META","NVDA","AAPL", "AMZN"]
+ #list1 = ["GOOG","NVDA","BRK.B", "AMZN"]
  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
