@@ -12,6 +12,7 @@ import datetime
 from dotenv import load_dotenv
 from numerize import numerize
 from operator import itemgetter
+from decimal import *
 
 load_dotenv()
 
@@ -66,23 +67,42 @@ class fetch:
        bblist = []
        btlist = []
        for x,y in stock_dict1.items():
-           if 1000000000000 <= y[0] <= 2000000000000:
+           if 1000000000000 <= y[0] < 2000000000000:
             #print (f"The company with tickr {x} are in the  ${cap1} Club")
-            onetlist.append(x)
-            #print (f"{i}. {x} with the value ${y}")
-         #valueprev = value
+            cap31 = float(1000000000000)
+            fp1 = float(y[3])
+            reqprice = ( cap31 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            onetlist.append(f'{x} floor - $ {reqprice2}')
            if 2000000000000 <= y[0] <= 3000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap2} Club")
-            twotlist.append(x)
-           if 500000000000 <= y[0] <= 1000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap0} Club")
-            bblist.append(x)
+            cap31 = float(2000000000000)
+            fp1 = float(y[3])
+            reqprice = ( cap31 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            twotlist.append(f'{x} floor - $ {reqprice2}')
+           if 500000000000 < y[0] <= 1000000000000:
+            cap31 = float(500000000000)
+            fp1 = float(y[3])
+            reqprice = ( cap31 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            bblist.append(f'{x} floor - $ {reqprice2}')
            if 0 <= y[0] <= 500000000000:
-            #print (f"The company with tickr {x} are in the  SUB ${cap0} Club")
-            btlist.append(x)
+            cap31 = float(500000000000)
+            fp1 = float(y[3])
+            reqprice = ( cap31 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            btlist.append(f'{x} Ceiling - $ {reqprice2}')
            if 3000000000000 < y[0]:
-            #print (f"The company with tickr {x} are in the  SUB ${cap3} Club")
-            threetlist.append(x)
+            cap31 = float(3000000000000)
+            fp1 = float(y[3])
+            reqprice = ( cap31 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            threetlist.append(f'{x} floor - $ {reqprice2}')
 
        print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
        print(f'{len(twotlist)} companies in the $ {cap2} Club & they are', twotlist)
@@ -187,7 +207,7 @@ class fetch:
          t21 = p5[:10]
          t1 = int(t21)
          t2 = time.ctime(t1)
-         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1] }
+         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
          #p1.printout()
          #print(stock_dict2)
        return stock_dict2
@@ -206,7 +226,7 @@ def handler(event, context):
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- #list1 = ["GOOG","NVDA","BRK.B", "AMZN"]
+ #list1 = ["BRK.B", "AMZN", "CRWV"]
  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)

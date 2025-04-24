@@ -8,9 +8,10 @@ import subprocess
 from polygon import RESTClient
 import time
 #from polygon.rest import models
-
+from numerize import numerize
 import datetime
 from dotenv import load_dotenv
+from decimal import *
 
 load_dotenv()
 
@@ -21,7 +22,7 @@ API_KEY = os.getenv('API_POLYGON')
     #API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
-ticker = "TSLA" 
+ticker = "AAPL" 
     #ticker = input("Enter the Ticker for which you need the Marketcap:")
 aggs = client.get_aggs(
         ticker,
@@ -64,11 +65,18 @@ num3 = float(share_outstand1)
 print("outstand output is")
 print(num2)
 
+cap3 = numerize.numerize(3000000000000,4)
+cap32 = float(3000000000000)
+cap31 = float(cap32)
 marketcap = ( num1 * num2 )
 marketcap2 = ( num1 * num3 )
-
+reqprice = ( cap31 / num2 )
+getcontext().prec = 3
+reqprice1 = Decimal(reqprice)
+reqprice2 = format(reqprice1,'.7')
 print(f'mcap with weighted shares is {marketcap} , mcap with class shares outstand is {marketcap2}')
 
+print(f'The Stock prices for {ticker} to remain at a $ {cap3} club is $ {reqprice2}')
 aggs2 = aggs1[0]
 print(f'aggs2 is {aggs1}')
 pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs2)], capture_output=True, shell=True, text=True, check=False)
