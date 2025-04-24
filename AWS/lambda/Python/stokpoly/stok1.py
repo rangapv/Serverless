@@ -168,11 +168,9 @@ class fetch:
          #print(marketcap)
          if (apicount % 5 == 0):
             time.sleep(60)
-         if detailcap1 > marketcap:
+         if detailcap < detailcap1:
          #   print('insode details')
-            detailcap = marketcap 
-         else:
-            detailcap = detailcap1
+            detailcap = detailcap1 
 
          aggs1 = aggs[0]
          #print(f'aggs1 is {aggs1}')

@@ -21,7 +21,7 @@ API_KEY = os.getenv('API_POLYGON')
     #API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
-ticker = "BRK.C" 
+ticker = "TSLA" 
     #ticker = input("Enter the Ticker for which you need the Marketcap:")
 aggs = client.get_aggs(
         ticker,
@@ -54,17 +54,20 @@ print(p6)
 outstand1 = client.get_ticker_details(ticker)
 print(f'tickr details aggs are {outstand1}')
 
-#share_outstand = outstand1.share_class_shares_outstanding
+share_outstand1 = outstand1.share_class_shares_outstanding
 share_outstand = outstand1.weighted_shares_outstanding
 
+print(f'weighted shares are {share_outstand}, class shares outstand are {share_outstand1}') 
 num1 = float(p6)
 num2 = float(share_outstand)
+num3 = float(share_outstand1)
 print("outstand output is")
 print(num2)
 
 marketcap = ( num1 * num2 )
+marketcap2 = ( num1 * num3 )
 
-print(marketcap)
+print(f'mcap with weighted shares is {marketcap} , mcap with class shares outstand is {marketcap2}')
 
 aggs2 = aggs1[0]
 print(f'aggs2 is {aggs1}')
@@ -103,8 +106,15 @@ print(list4)
 #detailcap = details.market_cap
 #print (detailcap)
 
+detailcap1 = outstand1.market_cap
+detailcap = marketcap
 
-
+if detailcap1 > marketcap:
+#   print('insode details')
+   detailcap = marketcap 
+else:
+   detailcap = detailcap1
+print(f'detailcap1 is {detailcap1} , marketcap is {marketcap} , detailcap is {detailcap}')
 #if __name__ == "main":
     #r1 = imagels()
     #print(f'the market cap is {r1}')
