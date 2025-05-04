@@ -60,6 +60,12 @@ class fetch:
        cap3 = numerize.numerize(3000000000000,4)
        cap2 = numerize.numerize(2000000000000,4)
        cap1 = numerize.numerize(1000000000000,4)
+       cap31 = float(1000000000000)
+       cap32 = float(2000000000000)
+       cap33 = float(3000000000000)
+       cap34 = float(4000000000000)
+       cap35 = float(5000000000000)
+       cap30 = float(500000000000)
        #print(f'cap3 is {cap3}')
        onetlist = []
        twotlist = []
@@ -67,43 +73,48 @@ class fetch:
        bblist = []
        btlist = []
        for x,y in stock_dict1.items():
+           a1 = float(y[0])
+           fp1 = float(y[3])
            if 1000000000000 <= y[0] < 2000000000000:
             #print (f"The company with tickr {x} are in the  ${cap1} Club")
-            cap31 = float(1000000000000)
-            fp1 = float(y[3])
             reqprice = ( cap31 / fp1 )
+            cprice = ( cap32 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
-            onetlist.append(f'{x} floor - $ {reqprice2}')
-           if 2000000000000 <= y[0] <= 3000000000000:
-            cap31 = float(2000000000000)
-            fp1 = float(y[3])
-            reqprice = ( cap31 / fp1 )
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            onetlist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
+           if 2000000000000 <= y[0] < 3000000000000:
+            reqprice = ( cap32 / fp1 )
+            cprice = ( cap33 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
-            twotlist.append(f'{x} floor - $ {reqprice2}')
-           if 500000000000 < y[0] <= 1000000000000:
-            cap31 = float(500000000000)
-            fp1 = float(y[3])
-            reqprice = ( cap31 / fp1 )
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            twotlist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
+           if 500000000000 <= y[0] < 1000000000000:
+            reqprice = ( cap30 / fp1 )
+            cprice = ( cap31 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
-            bblist.append(f'{x} floor - $ {reqprice2}')
-           if 0 <= y[0] <= 500000000000:
-            cap31 = float(500000000000)
-            fp1 = float(y[3])
-            reqprice = ( cap31 / fp1 )
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            bblist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
+           if 0 <= y[0] < 500000000000:
+            cprice = ( cap31 / fp1 )
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            btlist.append(f'{x} Ceiling - $ {cprice2}')
+           if 3000000000000 <= y[0] < 40000000000000:
+            reqprice = ( cap33 / fp1 )
+            cprice = ( cap34 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
-            btlist.append(f'{x} Ceiling - $ {reqprice2}')
-           if 3000000000000 < y[0]:
-            cap31 = float(3000000000000)
-            fp1 = float(y[3])
-            reqprice = ( cap31 / fp1 )
-            reqprice1 = Decimal(reqprice)
-            reqprice2 = format(reqprice1,'.7')
-            threetlist.append(f'{x} floor - $ {reqprice2}')
-
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            threetlist.append(f'{x} f/c - $ {reqprice2}/$ {cprice2}')
+       
+       print('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
        print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
        print(f'{len(twotlist)} companies in the $ {cap2} Club & they are', twotlist)
        print(f'{len(threetlist)} companies in the $ {cap3} Club & they are', threetlist)
@@ -138,6 +149,7 @@ class fetch:
        newlist.append(f'The Market Capitalization as of {now2}')
        newlist.append('')
        newlist.append('')
+       newlist.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
        newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
        newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
        newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')

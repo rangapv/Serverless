@@ -22,7 +22,8 @@ API_KEY = os.getenv('API_POLYGON')
     #API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
-ticker = "AAPL" 
+ticker = "META"
+
     #ticker = input("Enter the Ticker for which you need the Marketcap:")
 aggs = client.get_aggs(
         ticker,
@@ -70,11 +71,15 @@ cap32 = float(3000000000000)
 cap31 = float(cap32)
 marketcap = ( num1 * num2 )
 marketcap2 = ( num1 * num3 )
+sharediff = ( num2 - num3 )
+mcapdiff = ( marketcap - marketcap2 )
 reqprice = ( cap31 / num2 )
 getcontext().prec = 3
 reqprice1 = Decimal(reqprice)
 reqprice2 = format(reqprice1,'.7')
 print(f'mcap with weighted shares is {marketcap} , mcap with class shares outstand is {marketcap2}')
+print(f'the difference of shares are {sharediff}')
+print(f'the difference of mcap is {mcapdiff}')
 
 print(f'The Stock prices for {ticker} to remain at a $ {cap3} club is $ {reqprice2}')
 aggs2 = aggs1[0]
@@ -116,13 +121,18 @@ print(list4)
 
 detailcap1 = outstand1.market_cap
 detailcap = marketcap
+print(f'detailcap1 is {detailcap1} , marketcap is {marketcap} , detailcap is {detailcap}')
+diffcap1 = ( detailcap1 - detailcap )
+diffcap2 = numerize.numerize(diffcap1)
 
 if detailcap1 > marketcap:
-#   print('insode details')
+   print('insode details')
    detailcap = marketcap 
+   print(f'diffcap1 is {diffcap2}')
 else:
    detailcap = detailcap1
-print(f'detailcap1 is {detailcap1} , marketcap is {marketcap} , detailcap is {detailcap}')
+   print('insode else')
+   print(f'diffcap1 is {diffcap2}')
 #if __name__ == "main":
     #r1 = imagels()
     #print(f'the market cap is {r1}')
