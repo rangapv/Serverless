@@ -101,7 +101,7 @@ class fetch:
             cprice2 = format(cprice1,'.7')
             bblist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= y[0] < 500000000000:
-            cprice = ( cap31 / fp1 )
+            cprice = ( cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
             btlist.append(f'{x} Ceiling - $ {cprice2}')
@@ -239,7 +239,7 @@ def handler(event, context):
  apicount += 1
  aggs = []
  #list1 = ["BRK.B", "AMZN", "CRWV"]
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV","PLTR"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
  rt = p1.ascend(new24_dict)
