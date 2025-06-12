@@ -75,8 +75,8 @@ class fetch:
        for x,y in stock_dict1.items():
            a1 = float(y[0])
            fp1 = float(y[3])
+           print (f"The company with tickr {x} has members {y}")
            if 1000000000000 <= y[0] < 2000000000000:
-            #print (f"The company with tickr {x} are in the  ${cap1} Club")
             reqprice = ( cap31 / fp1 )
             cprice = ( cap32 / fp1 )
             reqprice1 = Decimal(reqprice)
@@ -197,13 +197,20 @@ class fetch:
          num2 = float(share_outstand)
          marketcap = ( num1 * num2 )
          detailcap = marketcap
-         #print(marketcap)
+         print(f'marketcap is {marketcap}')
+         if detailcap > 0:
+            diff1 = float(detailcap1 - marketcap)
+            print(f'the diff1 is $ {numerize.numerize(diff1,4)}')
+         else:
+            diff2 = float(marketcap - detailcap1)
+            detailcap = detailcap1
+            print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
+
          if (apicount % 5 == 0):
             time.sleep(60)
-         if detailcap < detailcap1:
+         #if detailcap < detailcap1:
          #   print('insode details')
-            detailcap = detailcap1 
-
+         #   detailcap = detailcap1 
          aggs1 = aggs[0]
          #print(f'aggs1 is {aggs1}')
          pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
@@ -238,8 +245,8 @@ def handler(event, context):
  client1 = p1.polyget(API_KEY)
  apicount += 1
  aggs = []
- #list1 = ["BRK.B", "AMZN", "CRWV"]
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV","PLTR"]
+ #list1 = ["AAPL","TSLA","NVDA"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
  rt = p1.ascend(new24_dict)
