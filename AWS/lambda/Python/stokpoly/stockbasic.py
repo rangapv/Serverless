@@ -32,20 +32,22 @@ aggs = client.get_aggs(
         "2025-03-28",
         "2025-03-28",
 )   
-print(aggs)
+print(f'printing aggs {aggs}')
 #cloprice = (aggs.close)
 #   p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
-
 print("prev aggs")
 aggs1 = client.get_previous_close_agg(ticker)
-print(aggs1)
+print(f'printing aggs1 {aggs1}')
+#print(f'printing aggs1 {aggs1.status}')
 
-
+#print(f'printgd aggs1of0 {aggs1[0].stderr}')
 p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
 l23 = subprocess.run(['echo "{}" | {}'.format(aggs1[0],p4)], capture_output=True, shell=True, text=True, check=False)
 print(l23)
 p5 = l23.stdout
-print(p5)
+p53 = l23.stderr
+print(f'printing stdout {p5}')
+print(f'printing error {p53}')
 
 r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
 l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)

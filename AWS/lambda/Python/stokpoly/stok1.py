@@ -170,10 +170,19 @@ class fetch:
        #list2 = ["SNOW","BRK.B"]
        #self.list2 = list21
        print('inside getit')
-       #print(stock_dict2)
+       print(list21)
        for x in list21:
-         print(f'getting quote for {x}')
-         aggs = client11.get_previous_close_agg(x)
+        print(f'getting quote for {x}')
+        try:
+          aggs = client11.get_previous_close_agg(x)
+          p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
+          l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
+          #print(l23)
+          p5 = l23.stdout
+          p53 = l23.stderr
+        except: 
+          print(f'error in ticker {x}')   
+        else: 
          apicount += 1
          #details = client11.get_ticker_details(x)
          outstand1 = client11.get_ticker_details(x)
@@ -243,10 +252,11 @@ if __name__ == "__main__":
  API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
  client1 = p1.polyget(API_KEY)
+ print(f'printing clinet is {client1}')
  apicount += 1
  aggs = []
- #list1 = ["AAPL","TSLA","NVDA"]
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR"]
+ #list1 = ["PLTR3","META","AAPL"]
+ list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
  rt = p1.ascend(new24_dict)
