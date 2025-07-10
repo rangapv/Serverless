@@ -22,7 +22,7 @@ API_KEY = os.getenv('API_POLYGON')
     #API_KEY = "insert-api-key"
 client = RESTClient(API_KEY)
 
-ticker = "META"
+ticker = "NVDA"
 
     #ticker = input("Enter the Ticker for which you need the Marketcap:")
 aggs = client.get_aggs(
@@ -68,6 +68,33 @@ num3 = float(share_outstand1)
 print("outstand output is")
 print(num2)
 
+newcap2 = (num3 * 163.72)
+newcap1 = (num2 * 163.83)
+newcap11 = (num2 * 163.83)
+newcap12 = (num2 * 163.83)
+newcap13 = (num2 * 163.83)
+newcap14 = (num2 * 163.83)
+newcap15 = (num2 * 163.83)
+newcap16 = (num2 * 163.83)
+newcap17 = (num2 * 163.83)
+
+j = 163.63
+i = 163.63
+while i < 164.04:
+    j = (j + 0.01)
+    i = j
+    newcap18 = (num2 * j)
+    newcap19 = (num3 * j)
+    print(f'the range for weighted is {i} and cap is {newcap18}')
+    print(f'the range is share outstanding {i} and cap is {newcap19}')
+    print('\n')
+
+
+print(f'the newcap1 is {newcap1}')
+print(f'the newcap2 is {newcap2}')
+
+cap4 = numerize.numerize(3996000000000,4)
+cap41 = float(3996000000000)
 cap3 = numerize.numerize(3000000000000,4)
 cap32 = float(3000000000000)
 cap31 = float(cap32)
@@ -76,6 +103,9 @@ marketcap2 = ( num1 * num3 )
 sharediff = ( num2 - num3 )
 mcapdiff = ( marketcap - marketcap2 )
 reqprice = ( cap31 / num2 )
+newreqprice = (cap41 / num2)
+print(f'the newreqprice is {newreqprice}')
+
 getcontext().prec = 3
 reqprice1 = Decimal(reqprice)
 reqprice2 = format(reqprice1,'.7')
