@@ -39,14 +39,19 @@ class fetch:
        print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
 
     def ascend(self,stock_dict1):
-       #print(stock_dict1)
-       #print((stock_dict1.values()))
-       #print(list(stock_dict1.values())[1])
+       print(f'stock disct is {stock_dict1}')
+       print(f'stock dict1 values is {stock_dict1.values()}')
+       print(list(stock_dict1.values())[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
-       myList1 = [(i,stock_dict1 [i][0],stock_dict1 [i][2]) for i in sorted(stock_dict1.keys()) ]
-       #print(myList1)
+       myList1 = [(i,stock_dict1 [i][0],stock_dict1 [i][2], stock_dict1 [i][3]) for i in sorted(stock_dict1.keys()) ]
+       print(f'mylist1 is {myList1}')
        datelist = (list(stock_dict1.values())[1])
        uplist = sorted(myList1,key=lambda x: x[1])
+       print(f'uplist is {uplist}')
+       uplist1 = sorted(myList1,key=lambda x: x[0])
+       uplist2 = sorted(myList1,key=lambda x: x[2])
+       print(f'uplist1 is {uplist1}')
+       print(f'uplist2 is {uplist2}')
        revlist = sorted(myList1,key=lambda x: x[1], reverse=True)
       
        # uplist = sorted(myList1,key=itemgetter(1))
@@ -72,47 +77,55 @@ class fetch:
        threetlist = []
        bblist = []
        btlist = []
-       for x,y in stock_dict1.items():
-           a1 = float(y[0])
-           fp1 = float(y[3])
-           print (f"The company with tickr {x} has members {y}")
-           if 1000000000000 <= y[0] < 2000000000000:
+       #for x,y in stock_dict1.items():
+       for x in revlist:
+           #a1 = float(y[0])
+           #fp1 = float(y[3])
+           a1 = float(x[2])
+           fp1 = float(x[3])
+           #print (f"The company with tickr {x} has members {y}")
+           #if 1000000000000 <= y[0] < 2000000000000:
+           if 1000000000000 <= x[1] < 2000000000000:
             reqprice = ( cap31 / fp1 )
             cprice = ( cap32 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            onetlist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
-           if 2000000000000 <= y[0] < 3000000000000:
+            onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 2000000000000 <= x[1] < 3000000000000:
+           #if 2000000000000 <= y[0] < 3000000000000:
             reqprice = ( cap32 / fp1 )
             cprice = ( cap33 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            twotlist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
-           if 500000000000 <= y[0] < 1000000000000:
+            twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 500000000000 <= x[1] < 1000000000000:
+           #if 500000000000 <= y[0] < 1000000000000:
             reqprice = ( cap30 / fp1 )
             cprice = ( cap31 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            bblist.append(f'{x} f/c - $ {reqprice2} / $ {cprice2}')
-           if 0 <= y[0] < 500000000000:
+            bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 0 <= x[1] < 500000000000:
+           #if 0 <= y[0] < 500000000000:
             cprice = ( cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            btlist.append(f'{x} Ceiling - $ {cprice2}')
-           if 3000000000000 <= y[0] < 40000000000000:
+            btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
+           if 3000000000000 <= x[1] < 40000000000000:
+           #if 3000000000000 <= y[0] < 40000000000000:
             reqprice = ( cap33 / fp1 )
             cprice = ( cap34 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            threetlist.append(f'{x} f/c - $ {reqprice2}/$ {cprice2}')
+            threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
        
        print('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
        print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
@@ -177,7 +190,8 @@ class fetch:
           aggs = client11.get_previous_close_agg(x)
           p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
           l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
-          #print(l23)
+          print(f'the aggs of 0  is {aggs[0]}')
+          print(f'the aggs is {l23}')
           p5 = l23.stdout
           p53 = l23.stderr
         except: 
@@ -255,7 +269,7 @@ def handler(event, context):
  print(f'printing clinet is {client1}')
  apicount += 1
  aggs = []
- #list1 = ["PLTR3","META","AAPL"]
+ #list1 = ["PLTR","META","AAPL", "NVDA"]
  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
  stock_dict = {}
  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
