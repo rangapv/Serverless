@@ -78,14 +78,11 @@ class fetch:
        fourlist = []
        bblist = []
        btlist = []
-       #for x,y in stock_dict1.items():
        for x in revlist:
            #a1 = float(y[0])
            #fp1 = float(y[3])
            a1 = float(x[2])
            fp1 = float(x[3])
-           #print (f"The company with tickr {x} has members {y}")
-           #if 1000000000000 <= y[0] < 2000000000000:
            if 1000000000000 <= x[1] < 2000000000000:
             reqprice = ( cap31 / fp1 )
             cprice = ( cap32 / fp1 )
@@ -95,7 +92,6 @@ class fetch:
             cprice2 = format(cprice1,'.7')
             onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 2000000000000 <= x[1] < 3000000000000:
-           #if 2000000000000 <= y[0] < 3000000000000:
             reqprice = ( cap32 / fp1 )
             cprice = ( cap33 / fp1 )
             reqprice1 = Decimal(reqprice)
@@ -104,7 +100,6 @@ class fetch:
             cprice2 = format(cprice1,'.7')
             twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 500000000000 <= x[1] < 1000000000000:
-           #if 500000000000 <= y[0] < 1000000000000:
             reqprice = ( cap30 / fp1 )
             cprice = ( cap31 / fp1 )
             reqprice1 = Decimal(reqprice)
@@ -113,13 +108,11 @@ class fetch:
             cprice2 = format(cprice1,'.7')
             bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= x[1] < 500000000000:
-           #if 0 <= y[0] < 500000000000:
             cprice = ( cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
             btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
            if 3000000000000 <= x[1] < 4000000000000:
-           #if 3000000000000 <= y[0] < 40000000000000:
             reqprice = ( cap33 / fp1 )
             cprice = ( cap34 / fp1 )
             reqprice1 = Decimal(reqprice)
@@ -128,7 +121,6 @@ class fetch:
             cprice2 = format(cprice1,'.7')
             threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
            if 4000000000000 <= x[1] < 5000000000000:
-           #if 3000000000000 <= y[0] < 40000000000000:
             reqprice = ( cap34 / fp1 )
             cprice = ( cap35 / fp1 )
             reqprice1 = Decimal(reqprice)
@@ -192,8 +184,6 @@ class fetch:
          i = i + 1
 
     def getit(self,client11,list21,stock_dict2,apicount):
-       #list2 = ["SNOW","BRK.B"]
-       #self.list2 = list21
        print('inside getit')
        print(list21)
        for x in list21:
@@ -269,9 +259,6 @@ class fetch:
 #main BEGINS
 #if __name__ == "__main__":
 def handler(event, context):
- #r2 = imagels()
- #return r2
- #print('inside handler')
  p1 = fetch()
  #print (f'client is {p1}')
  apicount = 0
@@ -285,8 +272,8 @@ def handler(event, context):
  else:
   apicount += 1
   aggs = []
-  list1 = ["PLTR","META","AAPL", "NVDA"]
-  #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
+  #list1 = ["PLTR","META","AAPL", "NVDA"]
+  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)

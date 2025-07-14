@@ -14,9 +14,9 @@ chkifinsta aws docker
 
 echo "This build will deploy lambda in the region ${region2} at a Function-named ${funcname} in the account# ${account1}"
 echo "if you need to deploy at a different account press y"
-read input1
+read input1 
 
-if ( "$input1" == "y" )
+if [[ "$input1" == "y" ]] 
 then
        echo "Enter the region where"
        input region2
