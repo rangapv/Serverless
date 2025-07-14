@@ -75,6 +75,7 @@ class fetch:
        onetlist = []
        twotlist = []
        threetlist = []
+       fourlist = []
        bblist = []
        btlist = []
        #for x,y in stock_dict1.items():
@@ -117,7 +118,7 @@ class fetch:
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
             btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
-           if 3000000000000 <= x[1] < 40000000000000:
+           if 3000000000000 <= x[1] < 4000000000000:
            #if 3000000000000 <= y[0] < 40000000000000:
             reqprice = ( cap33 / fp1 )
             cprice = ( cap34 / fp1 )
@@ -126,11 +127,21 @@ class fetch:
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
             threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+           if 4000000000000 <= x[1] < 5000000000000:
+           #if 3000000000000 <= y[0] < 40000000000000:
+            reqprice = ( cap34 / fp1 )
+            cprice = ( cap35 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
        
        print('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
        print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
        print(f'{len(twotlist)} companies in the $ {cap2} Club & they are', twotlist)
        print(f'{len(threetlist)} companies in the $ {cap3} Club & they are', threetlist)
+       print(f'{len(fourlist)} companies in the $ {cap4} Club & they are', fourlist)
        print(f'{len(bblist)}  companies in the $ {cap0} Club & they are ', bblist)
        print(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are ', btlist)
        #print(f'The companies in the $ {cap1} Club are ', onelist)
@@ -163,6 +174,7 @@ class fetch:
        newlist.append('')
        newlist.append('')
        newlist.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
+       newlist.append(f'{len(fourlist)} companies in the $ {cap4} Club & they are {fourlist}')
        newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
        newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
        newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
@@ -265,14 +277,18 @@ if __name__ == "__main__":
  apicount = 0
  API_KEY = os.getenv('API_POLYGON') 
  #API_KEY = "insert-api-key"
- client1 = p1.polyget(API_KEY)
- print(f'printing clinet is {client1}')
- apicount += 1
- aggs = []
- #list1 = ["PLTR","META","AAPL", "NVDA"]
- list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
- stock_dict = {}
- new24_dict = p1.getit(client1,list1,stock_dict,apicount)
- rt = p1.ascend(new24_dict)
+ try:
+  client1 = p1.polyget(API_KEY)
+  print(f'printing client is {client1}')
+ except:
+  print(f'looks like the Polygon API is down try after sometime')   
+ else:
+  apicount += 1
+  aggs = []
+  list1 = ["PLTR","META","AAPL", "NVDA"]
+  #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
+  stock_dict = {}
+  new24_dict = p1.getit(client1,list1,stock_dict,apicount)
+  rt = p1.ascend(new24_dict)
 # p1.printout()
 # return rt
