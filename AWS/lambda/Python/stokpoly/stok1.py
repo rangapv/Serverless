@@ -17,6 +17,24 @@ from decimal import *
 load_dotenv()
 
 class fetch:
+    cap0 = numerize.numerize(500000000000,4)
+    cap4 = numerize.numerize(4000000000000,4)
+    cap3 = numerize.numerize(3000000000000,4)
+    cap2 = numerize.numerize(2000000000000,4)
+    cap1 = numerize.numerize(1000000000000,4)
+    cap31 = float(1000000000000)
+    cap32 = float(2000000000000)
+    cap33 = float(3000000000000)
+    cap34 = float(4000000000000)
+    cap35 = float(5000000000000)
+    cap30 = float(500000000000)
+   #print(f'cap3 is {cap3}')
+    onetlist = []
+    twotlist = []
+    threetlist = []
+    fourlist = []
+    bblist = []
+    btlist = []
         #apple = yf.Ticker("AAPL")
     def polyget(self,API):
        client = RESTClient(API)
@@ -37,6 +55,25 @@ class fetch:
        print(uplist)
        print(revlist)
        print (f"the stock with ticker symbol \"{x}\" has a market cap of {detailcap} as of {now1}")
+       
+       print('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
+       print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
+       print(f'{len(twotlist)} companies in the $ {cap2} Club & they are', twotlist)
+       print(f'{len(threetlist)} companies in the $ {cap3} Club & they are', threetlist)
+       print(f'{len(fourlist)} companies in the $ {cap4} Club & they are', fourlist)
+       print(f'{len(bblist)}  companies in the $ {cap0} Club & they are ', bblist)
+       print(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are ', btlist)
+       #print(f'The companies in the $ {cap1} Club are ', onelist)
+    
+    def newlistprint(self,*args):
+        newlist0 = args[0]
+        if (len(args)) == 1:
+           newlist0.append('')
+           newlist0.append('')
+        else:
+            if (len(args[1])) > 0:
+             newlist0.append(f'{len(args[1])} companies in the $ {args[2]} Club & they are {args[1]}')   
+        return newlist0     
 
     def ascend(self,stock_dict1):
        print(f'stock disct is {stock_dict1}')
@@ -60,92 +97,54 @@ class fetch:
        myList.sort()
        myList1.sort()
 
-       cap0 = numerize.numerize(500000000000,4)
-       cap4 = numerize.numerize(4000000000000,4)
-       cap3 = numerize.numerize(3000000000000,4)
-       cap2 = numerize.numerize(2000000000000,4)
-       cap1 = numerize.numerize(1000000000000,4)
-       cap31 = float(1000000000000)
-       cap32 = float(2000000000000)
-       cap33 = float(3000000000000)
-       cap34 = float(4000000000000)
-       cap35 = float(5000000000000)
-       cap30 = float(500000000000)
-       #print(f'cap3 is {cap3}')
-       onetlist = []
-       twotlist = []
-       threetlist = []
-       fourlist = []
-       bblist = []
-       btlist = []
-       #for x,y in stock_dict1.items():
        for x in revlist:
-           #a1 = float(y[0])
-           #fp1 = float(y[3])
            a1 = float(x[2])
            fp1 = float(x[3])
-           #print (f"The company with tickr {x} has members {y}")
-           #if 1000000000000 <= y[0] < 2000000000000:
            if 1000000000000 <= x[1] < 2000000000000:
-            reqprice = ( cap31 / fp1 )
-            cprice = ( cap32 / fp1 )
+            reqprice = ( self.cap31 / fp1 )
+            cprice = ( self.cap32 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+            self.onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 2000000000000 <= x[1] < 3000000000000:
-           #if 2000000000000 <= y[0] < 3000000000000:
-            reqprice = ( cap32 / fp1 )
-            cprice = ( cap33 / fp1 )
+            reqprice = ( self.cap32 / fp1 )
+            cprice = ( self.cap33 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+            self.twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 500000000000 <= x[1] < 1000000000000:
-           #if 500000000000 <= y[0] < 1000000000000:
-            reqprice = ( cap30 / fp1 )
-            cprice = ( cap31 / fp1 )
+            reqprice = ( self.cap30 / fp1 )
+            cprice = ( self.cap31 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
+            self.bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= x[1] < 500000000000:
-           #if 0 <= y[0] < 500000000000:
-            cprice = ( cap30 / fp1 )
+            cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
+            self.btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
            if 3000000000000 <= x[1] < 4000000000000:
-           #if 3000000000000 <= y[0] < 40000000000000:
-            reqprice = ( cap33 / fp1 )
-            cprice = ( cap34 / fp1 )
+            reqprice = ( self.cap33 / fp1 )
+            cprice = ( self.cap34 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+            self.threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
            if 4000000000000 <= x[1] < 5000000000000:
-           #if 3000000000000 <= y[0] < 40000000000000:
-            reqprice = ( cap34 / fp1 )
-            cprice = ( cap35 / fp1 )
+            reqprice = ( self.cap34 / fp1 )
+            cprice = ( self.cap35 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
-       
-       print('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
-       print(f'{len(onetlist)} companies in the $ {cap1} Club & they are', onetlist)
-       print(f'{len(twotlist)} companies in the $ {cap2} Club & they are', twotlist)
-       print(f'{len(threetlist)} companies in the $ {cap3} Club & they are', threetlist)
-       print(f'{len(fourlist)} companies in the $ {cap4} Club & they are', fourlist)
-       print(f'{len(bblist)}  companies in the $ {cap0} Club & they are ', bblist)
-       print(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are ', btlist)
-       #print(f'The companies in the $ {cap1} Club are ', onelist)
-
+            self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
@@ -165,23 +164,9 @@ class fetch:
        #p1.diff(revlist)
        #newlist.append(None)
        #newlist.append(None)
-       now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-       now2 = datetime.datetime.now().strftime('%d-%m-%y')
-       newlist.append('')
-       newlist.append('')
-       newlist.append('')
-       newlist.append(f'The Market Capitalization as of {now2}')
-       newlist.append('')
-       newlist.append('')
-       newlist.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
-       newlist.append(f'{len(fourlist)} companies in the $ {cap4} Club & they are {fourlist}')
-       newlist.append(f'{len(threetlist)} companies in the $ {cap3} Club & they are {threetlist}')
-       newlist.append(f'{len(twotlist)} companies in the $ {cap2} Club & they are {twotlist}')
-       newlist.append(f'{len(onetlist)} companies in the $ {cap1} Club & they are {onetlist}')
-       newlist.append(f'{len(bblist)}  companies in the $ {cap0} Club & they are {bblist}')
-       newlist.append(f'{len(btlist)} companies in the SUB $ {cap0} Club & they are {btlist}')
       # print(newlist)
        return newlist
+
 
     def diff(self,dict2):
        print(dict2)
@@ -243,9 +228,6 @@ class fetch:
 
          if (apicount % 5 == 0):
             time.sleep(60)
-         #if detailcap < detailcap1:
-         #   print('insode details')
-         #   detailcap = detailcap1 
          aggs1 = aggs[0]
          #print(f'aggs1 is {aggs1}')
          pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
@@ -269,8 +251,6 @@ class fetch:
 #main BEGINS
 if __name__ == "__main__":
 #def handler(event, context):
- #r2 = imagels()
- #return r2
  #print('inside handler')
  p1 = fetch()
  #print (f'client is {p1}')
@@ -285,10 +265,25 @@ if __name__ == "__main__":
  else:
   apicount += 1
   aggs = []
-  list1 = ["PLTR","META","AAPL", "NVDA"]
+  list1 = ["META","NVDA"]
+  #list1 = ["PLTR","META","AAPL", "NVDA"]
   #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
 # p1.printout()
+  now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+  now2 = datetime.datetime.now().strftime('%d-%m-%y')
+  rt.append(f'The Market Capitalization as of {now2}')
+  rt = p1.newlistprint(rt)
+  rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
+  rt = p1.newlistprint(rt)
+       #print(f'the newlist1 is {newlist}')
+  rt = p1.newlistprint(rt,fetch.fourlist,fetch.cap4)
+  rt = p1.newlistprint(rt,fetch.threetlist,fetch.cap3)
+  rt = p1.newlistprint(rt,fetch.twotlist,fetch.cap2)
+  rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1)
+  rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0)
+  rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0)
+  print(f'rt is {rt}')
 # return rt
