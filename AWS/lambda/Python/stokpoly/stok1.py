@@ -67,6 +67,8 @@ class fetch:
     
     def newlistprint(self,*args):
         newlist0 = args[0]
+        print(f'in newslistprint {args}')
+        print(f'')
         if (len(args)) == 1:
            newlist0.append('')
            newlist0.append('')
@@ -265,15 +267,16 @@ if __name__ == "__main__":
  else:
   apicount += 1
   aggs = []
-  list1 = ["META","NVDA"]
+  #list1 = ["META","NVDA"]
   #list1 = ["PLTR","META","AAPL", "NVDA"]
-  #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
+  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
 # p1.printout()
   now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
   now2 = datetime.datetime.now().strftime('%d-%m-%y')
+  rt = p1.newlistprint(rt)
   rt.append(f'The Market Capitalization as of {now2}')
   rt = p1.newlistprint(rt)
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')

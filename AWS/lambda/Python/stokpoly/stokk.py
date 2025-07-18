@@ -67,6 +67,8 @@ class fetch:
     
     def newlistprint(self,*args):
         newlist0 = args[0]
+        print(f'in newslistprint {args}')
+        print(f'')
         if (len(args)) == 1:
            newlist0.append('')
            newlist0.append('')
@@ -274,6 +276,7 @@ def handler(event, context):
 # p1.printout()
   now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
   now2 = datetime.datetime.now().strftime('%d-%m-%y')
+  rt = p1.newlistprint(rt)
   rt.append(f'The Market Capitalization as of {now2}')
   rt = p1.newlistprint(rt)
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
@@ -285,5 +288,5 @@ def handler(event, context):
   rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1)
   rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0)
   rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0)
-  print(f'rt is {rt}')
+  #print(f'rt is {rt}')
  return rt
