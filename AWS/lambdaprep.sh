@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 #author:rangapv@yahoo.com
-
+#updates:26-07-25
 
 awscli() {
 awse1=`which aws`
 awse1s="$?"
+
 if [[ (( $awse1s -ne 0 )) ]]
 then
 
@@ -19,7 +20,30 @@ else
 	echo "aws cli is installed in this box proceeding with other config "
 fi
 }
- 
+
+awscli_macOS() {
+awsmac3=`which aws`
+awsmac3s="$?"
+if [[ (( "$awsmac3s" -ne 0 )) ]]
+then
+
+awsmac1=`curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"`
+
+awsmac2=`sudo installer -pkg ./AWSCLIV2.pkg -target /`
+awsmac2s="$?"
+
+if [[ (( "$awsmac2s" -eq 0 )) ]]
+then
+   echo "aws is installed in this box and is at location \`which aws\`"
+else
+  echo "aws install on Mac failed"
+fi
+
+else
+   echo "aws cli is Installed in $awsmac3"
+fi
+}
+
 aws_configure() {
 echo "enter the aws account access-id "
 read accid
@@ -76,7 +100,15 @@ fi
         echo "$ecrl1"
 }
 
-awscli
+
+mac11=$(sw_vers | grep mac)
+
+if [ -z "$mac11" ]
+then
+ awscli
+else
+ awscli_macOS
+fi
 
 aws_configure
 
