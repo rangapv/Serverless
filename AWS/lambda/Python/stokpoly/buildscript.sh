@@ -32,12 +32,14 @@ else
        echo "proceeding with build..."
 fi
 
-bld1=`docker build -t ${tag1} .`
+#bld1=`docker build -t ${tag1} .`
+bld1=`docker build --platform linux/amd64 -t ${tag1} .` 
 bld1s="$?"
 
 while :
 do
-        lc1=`docker images ${tag1}:latest | wc -l`
+        lc1=`docker images ${tag1}:latest | sed -n '$='`
+        #lc1=`docker images ${tag1}:latest | wc -l`
         if [[ "$lc1" != "2" ]]
         then
                 echo "inside wait"
