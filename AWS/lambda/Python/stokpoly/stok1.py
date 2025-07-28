@@ -109,7 +109,8 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.onetlist ):
+            res = [i for i in self.onetlist if 'x[0]' in i]
+            if res:
               print(f'already added to list')
             else:
               self.onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
@@ -120,7 +121,8 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.twotlist ):
+            res = [i for i in self.twotlist if 'x[0]' in i]
+            if res: 
               print(f'already added to list')
             else:
               self.twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
@@ -131,7 +133,8 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.bblist ):
+            res = [i for i in self.bblist if 'x[0]' in i]
+            if res:
               print(f'already added to list')
             else:
               self.bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
@@ -139,7 +142,8 @@ class fetch:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.btlist ):
+            res = [i for i in self.btlist if 'x[0]' in i]
+            if res:
               print(f'already added to list')
             else:
               self.btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
@@ -150,7 +154,8 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.threetlist ):
+            res = [i for i in self.threetlist if 'x[0]' in i]
+            if res:
               print(f'already added to list')
             else:
               self.threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
@@ -161,7 +166,8 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            if ( 'x[0]' in self.fourlist ):
+            res = [i for i in self.fourlist if 'x[0]' in i]
+            if res:
               print(f'already added to list')
             else:
               self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
@@ -285,8 +291,8 @@ if __name__ == "__main__":
  else:
   apicount += 1
   aggs = []
-  #list1 = ["META","NVDA"]
-  list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
+  list1 = ["META","NVDA","NVDA","NVDA"]
+  #list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
   #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
