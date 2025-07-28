@@ -109,7 +109,7 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.onetlist if 'x[0]' in i]
+            res = [i for i in self.onetlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
@@ -121,7 +121,7 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.twotlist if 'x[0]' in i]
+            res = [i for i in self.twotlist if x[0] in i]
             if res: 
               print(f'already added to list')
             else:
@@ -133,7 +133,7 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.bblist if 'x[0]' in i]
+            res = [i for i in self.bblist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
@@ -142,7 +142,7 @@ class fetch:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.btlist if 'x[0]' in i]
+            res = [i for i in self.btlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
@@ -154,7 +154,7 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.threetlist if 'x[0]' in i]
+            res = [i for i in self.threetlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
@@ -166,7 +166,7 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fourlist if 'x[0]' in i]
+            res = [i for i in self.fourlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:

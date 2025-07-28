@@ -100,6 +100,7 @@ class fetch:
        myList1.sort()
 
        for x in revlist:
+           print(f'entering revlist')
            a1 = float(x[2])
            fp1 = float(x[3])
            if 1000000000000 <= x[1] < 2000000000000:
@@ -109,10 +110,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.onetlist if 'x[0]' in i]
+            res = [i for i in self.onetlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
+              print(f'inside onetlist')
               self.onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 2000000000000 <= x[1] < 3000000000000:
             reqprice = ( self.cap32 / fp1 )
@@ -121,10 +123,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.twotlist if 'x[0]' in i]
+            res = [i for i in self.twotlist if x[0] in i]
             if res: 
               print(f'already added to list')
             else:
+              print(f'inside 2tlist')
               self.twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 500000000000 <= x[1] < 1000000000000:
             reqprice = ( self.cap30 / fp1 )
@@ -133,19 +136,21 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.bblist if 'x[0]' in i]
+            res = [i for i in self.bblist if x[0] in i]
             if res:
               print(f'already added to list')
-            else:
+            else:  
+              print(f'inside bblist')  
               self.bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= x[1] < 500000000000:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.btlist if 'x[0]' in i]
+            res = [i for i in self.btlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
+              print(f'inside btlist')
               self.btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
            if 3000000000000 <= x[1] < 4000000000000:
             reqprice = ( self.cap33 / fp1 )
@@ -154,10 +159,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.threetlist if 'x[0]' in i]
+            res = [i for i in self.threetlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
+              print(f'inside 3tlist')  
               self.threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
            if 4000000000000 <= x[1] < 5000000000000:
             reqprice = ( self.cap34 / fp1 )
@@ -166,10 +172,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fourlist if 'x[0]' in i]
+            res = [i for i in self.fourlist if x[0] in i]
             if res:
               print(f'already added to list')
             else:
+              print(f'inside 4tlist')
               self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
