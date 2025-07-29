@@ -33,7 +33,7 @@ else
 fi
 
 #bld1=`docker build -t ${tag1} .`
-bld1=`docker build --platform linux/amd64 -t ${tag1} .` 
+bld1=`docker build --platform linux/amd64 --provenance=false -t ${tag1} .` 
 bld1s="$?"
 
 while :

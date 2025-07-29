@@ -2,7 +2,7 @@
 #26-11-24
 #debian based so apt-get works
 
-FROM python:3.13.0-slim-bookworm AS build
+FROM python:3.13.5-slim-bookworm AS build
 
 RUN apt update
 
