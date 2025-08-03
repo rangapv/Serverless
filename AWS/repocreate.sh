@@ -94,4 +94,6 @@ fi
 
 repocreate
 
+rolecreate
+
 funclambda
