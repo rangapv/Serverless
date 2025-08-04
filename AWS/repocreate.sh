@@ -54,7 +54,7 @@ rolecreate() {
     echo "now lets attach the Permission JSON to this Role ${repoName}-${rolesubscript}"
     echo "PERMISSION policy are named you give an arbitary name (ex:simple1/simple23/...)"
     read perpolname
-    permrole1=`aws iam put-role-policy --role-name ${repoName}-${rolesubscript} --policy-document file://${permin1}.json --policy-name ${perpolname}``
+    permrole1=`aws iam put-role-policy --role-name ${repoName}-${rolesubscript} --policy-document file://${permin1}.json --policy-name ${perpolname}`
     permrole1s="$?"
     if [[ "$permrole1s" == "0" ]]
     then
@@ -98,12 +98,12 @@ then
    if [[ ! -z "${attachRole}" ]]
    then
    echo "Trying to create lambda function with name ${funcname}  and architectures ${lambarch} with timeout ${lambtime} of Package type ${lambpack}"
-   lambfunc1=`aws lambda create-function --function-name ${funcname} --architectures ${lambarch} --description {lambdesc} --timeout ${lambtime} --role arn:aws:iam::${account1}:role/${attachRole} --package-type ${lambpack} --code "ImageUri=639266437671.dkr.ecr.us-west-2.amazonaws.com/web1:latest"`
+   lambfunc1=`aws lambda create-function --function-name ${funcname} --architectures ${lambarch} --description {lambdesc} --timeout ${lambtime} --role arn:aws:iam::${account1}:role/${attachRole} --package-type ${lambpack} --code "ImageUri=${account1}.dkr.ecr.${region21}.amazonaws.com/${repoName}:latest"`
    lambfunc1s="$?"
-   if [[ "$lambfunc1s" == "0" ]]
+   if [[ "${lambfunc1s}" == "0" ]]
    then
        echo "Lambda Function creation SUCCESSFUL ${lambfunc1}"
-       funurl=`aws lambda create-function-url-config --function-name ${funcname} --auth-type NONE`
+       funurl=`aws lambda create-function-url-config --function-name "${funcname}" --auth-type NONE`
        funurls="$?"
        if [[ "${funurls}" == "0" ]]
        then
@@ -116,6 +116,9 @@ then
    else
        echo "Lambda Function creation failed..try again"
    fi
+   else
+      echo "No VALID role name mentioned hence exiting"
+   fi      
 else
    exit
 fi
