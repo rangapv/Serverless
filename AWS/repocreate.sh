@@ -58,6 +58,7 @@ rolecreate() {
     then
         echo "SUCCESSFULLY attached Permision policy to the role ${repoName}-${rolesubscript}"
         echo "Your role ${repoName}-${rolesubscript} is now READY to be attached"
+        attachRole="${repoName}-${rolesubscript}"
     else
         echo "FAILED to attach Permission policy to the role ${repoName}-${rolesubscript}"
     fi
