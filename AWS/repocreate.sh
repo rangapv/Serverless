@@ -10,11 +10,11 @@ read input11
 if [[ "$input11" == "y" ]]
 then
    echo "Enter the new repo name"
-   read reponame
+   read repo
    echo "Enter the region where you would like to create it (like us-west-2/us-east-1/... )"
-   read region21
-   echo "Going to create the repo in the region ${region21} with the name ${reponame} in account-id ${account1}"
-   repostat1=`aws ecr create-repository --repository-name ${reponame} --region ${region21}`
+   read region2
+   echo "Going to create the repo in the region ${region2} with the name ${repo} in account-id ${account1}"
+   repostat1=`aws ecr create-repository --repository-name ${repo} --region ${region2}`
    repos="$?"
    if [[ "$repos" == "0" ]]
    then
@@ -28,15 +28,15 @@ fi
 }
 
 rolecreate() {
- echo "Do you want to create a NEW Role for your FUNCTION ?"
+ echo "Do you want to create a NEW Role for your new FUNCTION ?"
  echo "If yes press 'y' "
  read roleres
  if  [[ "$roleres" == "y" ]]
  then
  echo "Now we are going to create a Role with Trust and Permission policy attached to it for our Lambda FUNCTION"
- echo "Input the TRUST policy json file name"
+ echo "Input the TRUST policy json file name with-out the extension(json)"
  read trust1
- echo "input the PERMISSSION policy json file name"
+ echo "input the PERMISSSION policy json file name with-out the extension(json)"
  read permin1
  echo "The format for naming will be repoName-rolesubscript !"
  echo "Enter the repo name under which this Role will be Active(hint:your ECR repo Name that you may have created earlier/one which exists)"
@@ -57,6 +57,7 @@ rolecreate() {
     if [[ "$permrole1s" == "0" ]]
     then
         echo "SUCCESSFULLY attached Permision policy to the role ${repoName}-${rolesubscript}"
+        echo "Your role ${repoName}-${rolesubscript} is now READY to be attached"
     else
         echo "FAILED to attach Permission policy to the role ${repoName}-${rolesubscript}"
     fi
@@ -64,17 +65,12 @@ rolecreate() {
    echo "Role creation failed for the role named ${repoName}-${rolesubscript} check logs..."
  fi
  else
-  echo "No New Role requested by the USER"
+  echo "No New Role requested by the USER going with the default ${attachRole} "
  fi
 }
 
 funclambda() {
-echo "If you want to create a new Function in command line for Lambda press 'y'"
-#echo "If you want to create a new Function in command line for Lambda press 'y'"
-read lambfunc
-if [[ "${lambfunc}" == "y" ]]
-then
-   echo "Enter Name of the Function"
+   echo "Enter Name for the New Function"
    read funcname
    echo "Enter the architecture (x86_64/amd64)"
    read lambarch
@@ -84,19 +80,19 @@ then
    read lambtime
    echo "Enter the package type (Image/Zip)"
    read lambpack
-   echo "Enter the Role that this lambda function will ASSUME . currently it is set to ${repoName}-${rolesubscript}, press 'y' to CHANGE it !"
+   echo "Enter the Role that this lambda function will ASSUME . currently it is set to ${attachRole}, press 'y' to CHANGE it !"
    read rolechange 
    if [[ "${rolechange}" == "y" ]]
    then
-      echo "Enter the NEW Role name to be ATTACHED to the lambda FUNCTION"
-      read  attachRole
+      rolecreate
    else
-      attachRole="${repoName}-${rolesubscript}"
+      echo "Going with the default role ${attachRole}"
    fi
+   
    if [[ ! -z "${attachRole}" ]]
    then
    echo "Trying to create lambda function with name ${funcname}  and architectures ${lambarch} with timeout ${lambtime} of Package type ${lambpack}"
-   lambfunc1=`aws lambda create-function --function-name ${funcname} --architectures ${lambarch} --description {lambdesc} --timeout ${lambtime} --role arn:aws:iam::${account1}:role/${attachRole} --package-type ${lambpack} --code "ImageUri=${account1}.dkr.ecr.${region21}.amazonaws.com/${repoName}:latest"`
+   lambfunc1=`aws lambda create-function --function-name ${funcname} --architectures ${lambarch} --description {lambdesc} --timeout ${lambtime} --role arn:aws:iam::${account1}:role/${attachRole} --package-type ${lambpack} --code "ImageUri=${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest"`
    lambfunc1s="$?"
    if [[ "${lambfunc1s}" == "0" ]]
    then
@@ -117,9 +113,6 @@ then
    else
       echo "No VALID role name mentioned hence exiting"
    fi      
-else
-   exit
-fi
 }
 
 #The function in this script gets called by other Scripts at runtime on user's Discretion!

@@ -3,14 +3,28 @@
 #17-04-25
 
 source <(curl -s https://raw.githubusercontent.com/rangapv/Serverless/refs/heads/main/AWS/lambda/Python/stokpoly/pkgchk.sh) > /dev/null 2>&1
+source <(curl -s https://raw.githubusercontent.com/rangapv/Serverless/refs/heads/main/AWS/repocreate.sh) > /dev/null 2>&1
 
 tag1="stok1"
 region2="us-west-2"
 funcname="web2"
 account1="639266437671"
 repo="web1"
+attachRole="web2-role-8jyz9pf3" 
 
 chkifinsta aws docker 
+
+echo "Hope you are Calling this script from the Directory which has the docker build file (dockerfile/Dockerfile)"
+
+echo "The docker build will push the image to the AWS ecr repo ${repo}, if you would like to create a NEW repo press 'y'"
+reponew="$?"
+
+if [[ "$reponew" == "y" ]]
+then
+   repocreate
+else
+   echo "Proceeding to push the build docker to repo ${repo}"
+fi
 
 echo "This build will deploy lambda in the region ${region2} at a Function-named ${funcname} in the account# ${account1}"
 echo "if you need to deploy at a different account press y"
@@ -19,15 +33,13 @@ read input1
 if [[ "$input1" == "y" ]] 
 then
        echo "Enter the region where"
-       input region2
+       read region2
        echo "Enter the account # to deploy this"
-       input account1
-       echo "Enter the function name wheret he image needs to be deployed as lambda code"
-       input funcname
+       read account1
        echo "Enter the tag details for the build"
-       input tag1
+       read tag1
        echo "Enter the repo name in AWS"
-       input repo
+       read repo
 else
        echo "proceeding with build..."
 fi
@@ -69,13 +81,21 @@ bld2s="$?"
                 if [[ "$bld3s" == "0" ]] 
                 then
                         echo "Build push to ECR passed check the ECR registry or proceed with lambda-update command"
-                        lamb_update=`aws lambda update-function-code --function-name ${funcname} --image-uri  ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
-			lamups="$?"
-                        if [[ "$lamups" == "0" ]]
+                        
+                        echo "Do you want to create a new lambda FUNCTION the current lambda function is set to ${funcname}'
+                        read newfunc
+                        if [[ "$newfunc" == "y" ]]
                         then
-                                echo "Lambda update to function is SUCCESS"
+                            funclambda
                         else
+                            lamb_update=`aws lambda update-function-code --function-name ${funcname} --image-uri  ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
+			    lamups="$?"
+                            if [[ "$lamups" == "0" ]]
+                            then
+                                echo "Lambda update to function is SUCCESS"
+                            else
                                 echo "lambda update to function FAILED pl chk ${lamb_update}"
+                            fi
                         fi
                 else
                         echo "Build push to ECR failed pls shk ${bld3}"
