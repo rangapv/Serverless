@@ -2,8 +2,6 @@
 #author: rangapv@yahoo.com
 #03-08-25
 
-account1="639266437671"
-
 repocreate() {
 
 echo "Do you want to create a new repo in ecr for lambda , If yes then press 'y' "
@@ -124,8 +122,4 @@ else
 fi
 }
 
-repocreate
-
-rolecreate
-
-funclambda
+#The function in this script gets called by other Scripts at runtime on user's Discretion!
