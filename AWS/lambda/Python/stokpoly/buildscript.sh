@@ -17,7 +17,7 @@ chkifinsta aws docker
 echo "Hope you are Calling this script from the Directory which has the docker build file (dockerfile/Dockerfile)"
 
 echo "The docker build will push the image to the AWS ecr repo ${repo}, if you would like to create a NEW repo press 'y'"
-reponew="$?"
+read reponew
 
 if [[ "$reponew" == "y" ]]
 then
