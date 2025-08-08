@@ -19,7 +19,7 @@ echo "Hope you are Calling this script from the Directory which has the docker b
 echo "The docker build will push the image to the AWS ecr repo ${repo}, if you would like to create a NEW repo press 'y'"
 read reponew
 
-if [[ "$reponew" == "y" ]]
+if [[ "${reponew}" == "y" ]]
 then
    repocreate
 else
@@ -30,7 +30,7 @@ echo "This build will deploy lambda in the region ${region2} at a Function-named
 echo "if you need to deploy at a different account press y"
 read input1 
 
-if [[ "$input1" == "y" ]] 
+if [[ "${input1}" == "y" ]] 
 then
        echo "Enter the region where"
        read region2
@@ -48,11 +48,11 @@ fi
 bld1=`docker build --platform linux/amd64 --provenance=false -t ${tag1} .` 
 bld1s="$?"
 
-while :
+while (true);
 do
         lc1=`docker images ${tag1}:latest | sed -n '$='`
         #lc1=`docker images ${tag1}:latest | wc -l`
-        if [[ "$lc1" != "2" ]]
+        if [[ (( "${lc1}" != "2" )) ]]
         then
                 echo "inside wait"
                 sleep 2
@@ -63,7 +63,7 @@ done
 
 if  [[ "$bld1s" == "0" ]]
 then
-bld2=`docker tag ${tag1}:latest ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
+wbld2=`docker tag ${tag1}:latest ${account1}.dkr.ecr.${region2}.amazonaws.com/${repo}:latest`
 bld2s="$?"
         if [[ "$bld2s" == "0" ]]
         then
@@ -82,7 +82,7 @@ bld2s="$?"
                 then
                         echo "Build push to ECR passed check the ECR registry or proceed with lambda-update command"
                         
-                        echo "Do you want to create a new lambda FUNCTION the current lambda function is set to ${funcname}'
+                        echo "Do you want to create a new lambda FUNCTION the current lambda function is set to ${funcname}"
                         read newfunc
                         if [[ "$newfunc" == "y" ]]
                         then
