@@ -83,6 +83,7 @@ bld2s="$?"
                         echo "Build push to ECR passed check the ECR registry or proceed with lambda-update command"
                         
                         echo "Do you want to create a new lambda FUNCTION the current lambda function is set to ${funcname}"
+			echo "Press 'y' to create a new lambda Function"
                         read newfunc
                         if [[ "$newfunc" == "y" ]]
                         then

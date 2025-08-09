@@ -81,14 +81,8 @@ funclambda() {
    read lambtime
    echo "Enter the package type (Image/Zip)"
    read lambpack
-   echo "Enter the Role that this lambda function will ASSUME . currently it is set to ${attachRole}, press 'y' to CHANGE it !"
-   read rolechange 
-   if [[ "${rolechange}" == "y" ]]
-   then
-      rolecreate
-   else
-      echo "Going with the default role ${attachRole}"
-   fi
+   echo "currently the Function will assume the role ${attachRole}"
+   rolecreate
    
    if [[ ! -z "${attachRole}" ]]
    then
