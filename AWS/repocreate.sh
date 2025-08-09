@@ -98,7 +98,16 @@ funclambda() {
        then
           url1="echo ${funurl} | grep FunctionUrl"
           echo "Function URL creation is SUCCESS.."
-          echo "You can access your function at ${url1}" 
+	  echo "You can access your function at ${url1}" 
+
+	  lamaccess1=`aws lambda add-permission --function-name ${funcname} --statement-id "example112-cross-account-statement" --action lambda:InvokeFunctionUrl --principal "*" --function-url-auth-type NONE`
+	  lamacces1s="$?"
+	  if [[ "${lamacces1s}" == "0" ]]
+	  then
+		  echo "Successfully Allowed PUBLIC access to the Above URL"
+	  else
+		  echo "PUBLIC access to the above URL did NOT go-through"
+	  fi
        else
          echo "Function URL (HTTPS-endpoint) creation failed.."
        fi
