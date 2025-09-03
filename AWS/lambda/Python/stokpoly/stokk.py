@@ -202,6 +202,10 @@ class fetch:
          valueprev = value
          i = i + 1
 
+    def companylist(self,listc):
+       print(listc) 
+
+
     def getit(self,client11,list21,stock_dict2,apicount):
        #list2 = ["SNOW","BRK.B"]
        #self.list2 = list21
@@ -312,5 +316,7 @@ def handler(event, context):
   rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1)
   rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0)
   rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0)
+  rt.append('The companies list that are considered in this ranking are **')
+  rt.append(list1)
   print(f'rt is {rt}')
  return rt
