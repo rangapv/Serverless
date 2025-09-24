@@ -95,12 +95,27 @@ class fetch:
       
        # uplist = sorted(myList1,key=itemgetter(1))
        # revlist = sorted(myList1,key=itemgetter(1), reverse=True)
-       
+      
+       print(f'revlist is {revlist}')
        myList.sort()
        myList1.sort()
+       cin = 0
+       c1 = 0
+       for t in revlist:
+           total1 = float(c1 + t[1])
+           c1 = total1
+           cin = cin + 1
+           if cin >= 10:
+               break
+       total2 = numerize.numerize(total1,4)
+
+
+
+
+
+       print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
 
        for x in revlist:
-           print(f'entering revlist')
            a1 = float(x[2])
            fp1 = float(x[3])
            if 1000000000000 <= x[1] < 2000000000000:
@@ -114,7 +129,6 @@ class fetch:
             if res:
               print(f'already added to list')
             else:
-              print(f'inside onetlist')
               self.onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 2000000000000 <= x[1] < 3000000000000:
             reqprice = ( self.cap32 / fp1 )
@@ -127,7 +141,6 @@ class fetch:
             if res: 
               print(f'already added to list')
             else:
-              print(f'inside 2tlist')
               self.twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 500000000000 <= x[1] < 1000000000000:
             reqprice = ( self.cap30 / fp1 )
@@ -139,8 +152,7 @@ class fetch:
             res = [i for i in self.bblist if x[0] in i]
             if res:
               print(f'already added to list')
-            else:  
-              print(f'inside bblist')  
+            else:
               self.bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= x[1] < 500000000000:
             cprice = ( self.cap30 / fp1 )
@@ -150,7 +162,6 @@ class fetch:
             if res:
               print(f'already added to list')
             else:
-              print(f'inside btlist')
               self.btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
            if 3000000000000 <= x[1] < 4000000000000:
             reqprice = ( self.cap33 / fp1 )
@@ -163,7 +174,6 @@ class fetch:
             if res:
               print(f'already added to list')
             else:
-              print(f'inside 3tlist')  
               self.threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
            if 4000000000000 <= x[1] < 5000000000000:
             reqprice = ( self.cap34 / fp1 )
@@ -176,7 +186,6 @@ class fetch:
             if res:
               print(f'already added to list')
             else:
-              print(f'inside 4tlist')
               self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
@@ -187,10 +196,12 @@ class fetch:
          print (f"{i}. {x[0]} @ {x[2]} with the value $ {numerize.numerize(x[1],4)}")
          newlist.append(f'{i}. {x[0]} @ {x[2]} closing with the value $ {numerize.numerize(x[1],4)}')
          i = i + 1  
-      
+       now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+       now2 = datetime.datetime.now().strftime('%d-%m-%y')
+       newlist.append(f'the total Market cap of the Top {cin} companies in the US is {total2} as od {now2}')
        #print(f'Ascending order most-valuable-company from the list\n')
        #i = len(uplist) 
-       #for key,value in uplist:
+       #for key,value in uplist:format(cprice1,'.7')
        #  print (f"{i}. {key} with the value $ {numerize.numerize(value,4)}")
        #@  valueprev = value
        #  i = i - 1 
@@ -208,6 +219,10 @@ class fetch:
          print (f"{i}. {key} with the value ${numerize.numerize(value,3)}")  
          valueprev = value
          i = i + 1
+
+    def companylist(self,listc):
+       print(listc) 
+
 
     def getit(self,client11,list21,stock_dict2,apicount):
        #list2 = ["SNOW","BRK.B"]
@@ -298,17 +313,13 @@ if __name__ == "__main__":
  else:
   apicount += 1
   aggs = []
-  list1 = ["META","NVDA","NVDA","NVDA"]
+  #list1 = ["META","NVDA","ORCL"]
   #list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
-  #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "PLTR3"]
+  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
 # p1.printout()
-  now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-  now2 = datetime.datetime.now().strftime('%d-%m-%y')
-  rt = p1.newlistprint(rt)
-  rt.append(f'The Market Capitalization as of {now2}')
   rt = p1.newlistprint(rt)
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
   rt = p1.newlistprint(rt)
@@ -319,5 +330,7 @@ if __name__ == "__main__":
   rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1)
   rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0)
   rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0)
+  rt.append('The companies list that are considered in this ranking are **')
+  rt.append(list1)
   print(f'rt is {rt}')
 # return rt
