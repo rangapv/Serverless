@@ -106,14 +106,16 @@ class fetch:
            c1 = total1
            cin = cin + 1
            if cin >= 10:
+               total2 = numerize.numerize(total1,4)
                break
-       total2 = numerize.numerize(total1,4)
+           if cin == 7:
+               cin7 = 7
+               total3 = numerize.numerize(total1,4) 
+           if cin == 3:
+               cin3 = 3
+               total4 = numerize.numerize(total1,4)
 
-
-
-
-
-       print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
+       #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
 
        for x in revlist:
            a1 = float(x[2])
@@ -198,7 +200,13 @@ class fetch:
          i = i + 1  
        now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
        now2 = datetime.datetime.now().strftime('%d-%m-%y')
-       newlist.append(f'the total Market cap of the Top {cin} companies in the US is {total2} as od {now2}')
+       newlist.append(f'')
+       if cin >= 10:
+          newlist.append(f'the total Market cap of the Top {cin} companies in the US is $ {total2}' )
+       if cin >= 7:   
+          newlist.append(f'the total Market cap of the Top {cin7} companies in the US is $ {total3}')
+       if cin >= 3:
+          newlist.append(f'the total Market cap of the Top {cin3} companies in the US is $ {total4}')
        #print(f'Ascending order most-valuable-company from the list\n')
        #i = len(uplist) 
        #for key,value in uplist:format(cprice1,'.7')
@@ -314,8 +322,8 @@ def handler(event, context):
   apicount += 1
   aggs = []
   #list1 = ["META","NVDA","ORCL"]
-  #list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
-  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL"]
+  list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
+  #list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
