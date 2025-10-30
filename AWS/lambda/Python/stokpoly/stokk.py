@@ -18,6 +18,9 @@ load_dotenv()
 
 class fetch:
     cap0 = numerize.numerize(500000000000,4)
+    cap7 = numerize.numerize(7000000000000,4)
+    cap6 = numerize.numerize(6000000000000,4)
+    cap5 = numerize.numerize(5000000000000,4)
     cap4 = numerize.numerize(4000000000000,4)
     cap3 = numerize.numerize(3000000000000,4)
     cap2 = numerize.numerize(2000000000000,4)
@@ -27,12 +30,17 @@ class fetch:
     cap33 = float(3000000000000)
     cap34 = float(4000000000000)
     cap35 = float(5000000000000)
+    cap36 = float(6000000000000)
+    cap37 = float(7000000000000)
     cap30 = float(500000000000)
    #print(f'cap3 is {cap3}')
     onetlist = []
     twotlist = []
     threetlist = []
     fourlist = []
+    fivelist = []
+    sixlist = []
+    sevenlist = []
     bblist = []
     btlist = []
         #apple = yf.Ticker("AAPL")
@@ -190,6 +198,33 @@ class fetch:
             else:
               self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
+           if 5000000000000 <= x[1] < 6000000000000:
+            reqprice = ( self.cap35 / fp1 )
+            cprice = ( self.cap36 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            res = [i for i in self.fivelist if x[0] in i]
+            if res:
+              print(f'already added to list')
+            else:
+              self.fivelist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+
+           if 6000000000000 <= x[1] < 7000000000000:
+            reqprice = ( self.cap36 / fp1 )
+            cprice = ( self.cap37 / fp1 )
+            reqprice1 = Decimal(reqprice)
+            reqprice2 = format(reqprice1,'.7')
+            cprice1 = Decimal(cprice)
+            cprice2 = format(cprice1,'.7')
+            res = [i for i in self.sixlist if x[0] in i]
+            if res:
+              print(f'already added to list')
+            else:
+              self.sixlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+
+
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        i = 1
        newlist = []
@@ -323,7 +358,7 @@ def handler(event, context):
   aggs = []
   #list1 = ["META","NVDA","ORCL"]
   #list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
-  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL"]
+  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL", "JPM", "WMT"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
@@ -332,6 +367,9 @@ def handler(event, context):
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
   rt = p1.newlistprint(rt)
        #print(f'the newlist1 is {newlist}')
+  rt = p1.newlistprint(rt,fetch.sevenlist,fetch.cap7)
+  rt = p1.newlistprint(rt,fetch.sixlist,fetch.cap6)
+  rt = p1.newlistprint(rt,fetch.fivelist,fetch.cap5)
   rt = p1.newlistprint(rt,fetch.fourlist,fetch.cap4)
   rt = p1.newlistprint(rt,fetch.threetlist,fetch.cap3)
   rt = p1.newlistprint(rt,fetch.twotlist,fetch.cap2)
