@@ -358,7 +358,7 @@ if __name__ == "__main__":
   aggs = []
   #list1 = ["META","NVDA","ORCL"]
   #list1 = ["PLTR","META","NVDA","AAPL","NVDA"]
-  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL", "JPM", "WMT"]
+  list1 = ["META", "NVDA","AAPL","GOOG", "AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL", "JPM", "WMT","LLY","CAT"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   rt = p1.ascend(new24_dict)
