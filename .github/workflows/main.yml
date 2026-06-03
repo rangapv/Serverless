@@ -16,6 +16,9 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment: production
+    defaults:
+      run:
+        working-directory: ../../AWS/lambda/Python/stokpoly/
 
     steps:
     - name: Checkout
