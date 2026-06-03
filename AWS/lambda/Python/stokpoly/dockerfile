@@ -19,7 +19,7 @@ ENV LAMBDA_TASK_ROOT="/usr"
 
 COPY ./stokk.py /usr/
 #COPY ./stockbasic.py /usr/
-COPY ./.env /usr/
+#COPY ./.env /usr/
 
 WORKDIR /usr
 
