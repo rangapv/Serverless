@@ -18,7 +18,7 @@ jobs:
     environment: production
     defaults:
       run:
-        working-directory: ../../AWS/lambda/Python/stokpoly/
+        working-directory: AWS/lambda/Python/stokpoly/
 
     steps:
     - name: Checkout
