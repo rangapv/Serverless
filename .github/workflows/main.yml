@@ -43,7 +43,8 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.my_lambda_repo }}     # my-lambda-repo
-        IMAGE_TAG: ${{ github.sha }}
+        #IMAGE_TAG: ${{ github.sha }}
+        IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
       run: |
         # Build Docker image from Dockerfile in repository root
         docker build --platform linux/amd64 --provenance=false --secret id=API_POLYGON,env=${{ secrets.API_POLYGON }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -52,6 +53,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         # Output the full image URI for the next step
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Deploy Lambda function with container image
       uses: aws-actions/aws-lambda-deploy@v1.1.0
