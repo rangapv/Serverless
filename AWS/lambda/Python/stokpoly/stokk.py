@@ -379,4 +379,4 @@ def handler(event, context):
   rt.append('The companies list that are considered in this ranking are **')
   rt.append(list1)
   print(f'rt is {rt}')
- return rt
+  return rt
