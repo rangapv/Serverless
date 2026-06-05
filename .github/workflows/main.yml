@@ -6,6 +6,7 @@ on:
 
 env:
   AWS_REGION : us-west-2
+  API_POLYGON : ${{ secrets.API_POLYGON }}
 
 permissions:
   id-token: write   # This is required for OIDC authentication
