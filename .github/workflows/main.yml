@@ -6,8 +6,7 @@ on:
 
 env:
   AWS_REGION : us-west-2
-  API_POLYGON : ${{ secrets.API_POLYGON }}
-
+  
 permissions:
   id-token: write   # This is required for OIDC authentication
   contents: read    # This is required to checkout the repository
@@ -46,6 +45,8 @@ jobs:
         ECR_REPOSITORY: ${{ secrets.my_lambda_repo }}     # my-lambda-repo
         #IMAGE_TAG: ${{ github.sha }}
         IMAGE_TAG: ${{ secrets.IMAGE_TAG }}
+        API_POLYGON : ${{ secrets.API_POLYGON1 }}
+        
       run: |
         # Build Docker image from Dockerfile in repository root
         docker build --platform linux/amd64 --provenance=false --secret id=API_POLYGON,env=${{ secrets.API_POLYGON }} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
