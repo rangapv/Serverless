@@ -65,5 +65,5 @@ jobs:
         image-uri: ${{ steps.build-image.outputs.image }}  # ECR image URI from previous step
         role: ${{ secrets.lambda_role }} # arn:aws:iam::123456789012:role/lambda-role  # IAM execution role for Lambda
         environment: |
-          API_POLYGON : ${{ secrets.API_POLYGON1 }}
+          API_POLYGON=${{ secrets.API_POLYGON1 }}
         # Note: handler, runtime, and layers should not be provided for container images
