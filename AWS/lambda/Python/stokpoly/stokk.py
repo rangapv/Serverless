@@ -88,7 +88,7 @@ class fetch:
     def ascend(self,stock_dict1):
        print(f'stock disct is {stock_dict1}')
        print(f'stock dict1 values is {stock_dict1.values()}')
-       print(list(stock_dict1.values())[1])
+       #print(list(stock_dict1.values())[1])
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0],stock_dict1 [i][2], stock_dict1 [i][3]) for i in sorted(stock_dict1.keys()) ]
        print(f'mylist1 is {myList1}')
