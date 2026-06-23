@@ -364,7 +364,7 @@ def handler(event, context):
   rt = p1.ascend(new24_dict)
 # p1.printout()
   rt = p1.newlistprint(rt)
-  resultoft = sum(len(l) for l in [sevenlist,sixlist,fivelist,fourlist,threetlist,twotlist,onetlist])
+  resultoft = sum(len(l) for l in [fetch.sevenlist,fetch.sixlist,fetch.fivelist,fetch.fourlist,fetch.threetlist,fetch.twotlist,fetch.onetlist])
   rt.append("")   
   rt.append(f'The total number of Trillion companies are {resultoft} ')
   rt.append("")
