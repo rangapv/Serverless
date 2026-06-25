@@ -81,8 +81,10 @@ class fetch:
            newlist0.append('')
            newlist0.append('')
         else:
-            if (len(args[1])) > 0:
-             newlist0.append(f'{len(args[1])} companies in the $ {args[2]} Club & they are {args[1]}')   
+            if len(args[1]) > 0 and args[3] != "btlist":
+             newlist0.append(f'{len(args[1])} companies in the $ {args[2]} Club & they are {args[1]}')
+            elif len(args[1]) > 0 and args[3] == "btlist":
+             newlist0.append(f'{len(args[1])} companies in the SUB $ {args[2]} Club & they are {args[1]}')
         return newlist0     
 
     def ascend(self,stock_dict1):
@@ -372,15 +374,15 @@ def handler(event, context):
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
   rt = p1.newlistprint(rt)
        #print(f'the newlist1 is {newlist}')
-  rt = p1.newlistprint(rt,p1.sevenlist,p1.cap7)
-  rt = p1.newlistprint(rt,fetch.sixlist,fetch.cap6)
-  rt = p1.newlistprint(rt,fetch.fivelist,fetch.cap5)
-  rt = p1.newlistprint(rt,fetch.fourlist,fetch.cap4)
-  rt = p1.newlistprint(rt,fetch.threetlist,fetch.cap3)
-  rt = p1.newlistprint(rt,fetch.twotlist,fetch.cap2)
-  rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1)
-  rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0)
-  rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0)
+  rt = p1.newlistprint(rt,p1.sevenlist,p1.cap7,"sevenlist")
+  rt = p1.newlistprint(rt,fetch.sixlist,fetch.cap6,"sixlist")
+  rt = p1.newlistprint(rt,fetch.fivelist,fetch.cap5,"fivelist")
+  rt = p1.newlistprint(rt,fetch.fourlist,fetch.cap4,"fourlist")
+  rt = p1.newlistprint(rt,fetch.threetlist,fetch.cap3,"threetlist")
+  rt = p1.newlistprint(rt,fetch.twotlist,fetch.cap2,"twotlist")
+  rt = p1.newlistprint(rt,fetch.onetlist,fetch.cap1,"onetlist")
+  rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0,"bblist")
+  rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0,"btlist")
   rt.append('The companies list that are considered in this ranking are **')
   rt.append(list1)
   print(f'rt is {rt}')
