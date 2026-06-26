@@ -228,6 +228,7 @@ class fetch:
 
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
+       print(f'The length of revlist, which contains the sorted final display of companies {len(revlist)}') 
        i = 1
        newlist = []
        newlist.append(f'TOP most-valuable-company from the list as of {datelist[1]}')
@@ -384,6 +385,8 @@ def handler(event, context):
   rt = p1.newlistprint(rt,fetch.bblist,fetch.cap0,"bblist")
   rt = p1.newlistprint(rt,fetch.btlist,fetch.cap0,"btlist")
   rt.append('The companies list that are considered in this ranking are **')
+  print(f'the total companies considered in the survey is {len(list1)}')
+  print(f'the total companies in the final grouped comanies are {sum(len(g) for g in [p1.sevenlist,p1.sixlist,p1.fivelist,p1.fourlist,p1.threetlist,p1.twotlist,p1.onetlist,p1.bblist,p1.btlist])}')
   rt.append(list1)
   print(f'rt is {rt}')
   return rt
