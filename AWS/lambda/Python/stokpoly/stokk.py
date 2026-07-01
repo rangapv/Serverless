@@ -126,105 +126,108 @@ class fetch:
                total4 = numerize.numerize(total1,4)
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
-
-       for x in revlist:
+       print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
+        
+       for x2 in revlist:
            a1 = float(x[2])
            fp1 = float(x[3])
-           if 1000000000000 <= x[1] < 2000000000000:
+           print(f'x2 in revlist is {x2}')
+           if 1000000000000 <= x2[1] < 2000000000000:
             reqprice = ( self.cap31 / fp1 )
             cprice = ( self.cap32 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.onetlist if x[0] in i]
+            res = [i for i in self.onetlist if x2[0] in i]
+            print(f'processing append-list for {x2[0]}')
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res}')
             else:
-              self.onetlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
-           if 2000000000000 <= x[1] < 3000000000000:
+              self.onetlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 2000000000000 <= x2[1] < 3000000000000:
             reqprice = ( self.cap32 / fp1 )
             cprice = ( self.cap33 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.twotlist if x[0] in i]
+            res = [i for i in self.twotlist if x2[0] in i]
             if res: 
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.twotlist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
-           if 500000000000 <= x[1] < 1000000000000:
+              self.twotlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 500000000000 <= x2[1] < 1000000000000:
             reqprice = ( self.cap30 / fp1 )
             cprice = ( self.cap31 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.bblist if x[0] in i]
+            res = [i for i in self.bblist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.bblist.append(f'{x[0]} f/c - $ {reqprice2} / $ {cprice2}')
-           if 0 <= x[1] < 500000000000:
+              self.bblist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+           if 0 <= x2[1] < 500000000000:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.btlist if x[0] in i]
+            res = [i for i in self.btlist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.btlist.append(f'{x[0]} Ceiling - $ {cprice2}')
-           if 3000000000000 <= x[1] < 4000000000000:
+              self.btlist.append(f'{x2[0]} Ceiling - $ {cprice2}')
+           if 3000000000000 <= x2[1] < 4000000000000:
             reqprice = ( self.cap33 / fp1 )
             cprice = ( self.cap34 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.threetlist if x[0] in i]
+            res = [i for i in self.threetlist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.threetlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
-           if 4000000000000 <= x[1] < 5000000000000:
+              self.threetlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
+           if 4000000000000 <= x2[1] < 5000000000000:
             reqprice = ( self.cap34 / fp1 )
             cprice = ( self.cap35 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fourlist if x[0] in i]
+            res = [i for i in self.fourlist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.fourlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              self.fourlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
-           if 5000000000000 <= x[1] < 6000000000000:
+           if 5000000000000 <= x2[1] < 6000000000000:
             reqprice = ( self.cap35 / fp1 )
             cprice = ( self.cap36 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fivelist if x[0] in i]
+            res = [i for i in self.fivelist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.fivelist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              self.fivelist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
-           if 6000000000000 <= x[1] < 7000000000000:
+           if 6000000000000 <= x2[1] < 7000000000000:
             reqprice = ( self.cap36 / fp1 )
             cprice = ( self.cap37 / fp1 )
             reqprice1 = Decimal(reqprice)
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.sixlist if x[0] in i]
+            res = [i for i in self.sixlist if x2[0] in i]
             if res:
-              print(f'already added to list')
+              print(f'already added to list {res} {x2[0]}')
             else:
-              self.sixlist.append(f'{x[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              self.sixlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
@@ -367,7 +370,11 @@ def handler(event, context):
   list1 = ["META", "NVDA","AAPL","GOOG","SPCX","AMZN","TSLA","BRK.B","MSFT","AVGO","NFLX","MU","SNOW","DE","CTSH","ACN","CRWV", "PLTR", "ORCL", "JPM", "WMT","LLY","CAT"]
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
+  print(f'after getit the list is {new24_dict}')
+  print(f'the length of new24_dict is {len(new24_dict)}')
   rt = p1.ascend(new24_dict)
+  print(f'after ascend rt is {rt}')
+  print(f'the length of rt is {len(rt)}')
 # p1.printout()
   rt = p1.newlistprint(rt)
   resultoft = ""
