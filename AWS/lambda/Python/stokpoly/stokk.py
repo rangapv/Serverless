@@ -129,8 +129,8 @@ class fetch:
        print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
         
        for x2 in revlist:
-           a1 = float(x[2])
-           fp1 = float(x[3])
+           a1 = float(x2[2])
+           fp1 = float(x2[3])
            print(f'x2 in revlist is {x2}')
            if 1000000000000 <= x2[1] < 2000000000000:
             reqprice = ( self.cap31 / fp1 )
