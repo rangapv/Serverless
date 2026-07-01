@@ -127,7 +127,15 @@ class fetch:
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
        print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
-        
+       onetlist = []
+       twotlist = []
+       threetlist = []
+       fourlist = []
+       fivelist = []
+       sixlist = []
+       sevenlist = []
+       bblist = []
+       btlist = [] 
        for x2 in revlist:
            a1 = float(x2[2])
            fp1 = float(x2[3])
