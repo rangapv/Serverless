@@ -127,15 +127,7 @@ class fetch:
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
        print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
-       self.onetlist = []
-       self.twotlist = []
-       self.threetlist = []
-       self.fourlist = []
-       self.fivelist = []
-       self.sixlist = []
-       self.sevenlist = []
-       self.bblist = []
-       self.btlist = [] 
+       print(f'the list-of-list are {self.sixlist},{self.fivelist},{self.fourlist},{self.threetlist},{self.twotlist},{self.onetlist},{self.bblist},{self.btlist}')
        for x2 in revlist:
            a1 = float(x2[2])
            fp1 = float(x2[3])
@@ -240,6 +232,8 @@ class fetch:
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        print(f'The length of revlist, which contains the sorted final display of companies {len(revlist)}') 
+       print(f'the list-of-list are {self.sixlist},{self.fivelist},{self.fourlist},{self.threetlist},{self.twotlist},{self.onetlist},{self.bblist},{self.btlist}')
+       
        i = 1
        newlist = []
        newlist.append(f'TOP most-valuable-company from the list as of {datelist[1]}')
@@ -393,6 +387,7 @@ def handler(event, context):
   rt.append('The Leadership Board of the Most-Valuable companies are (f-Floor price; c-Ceiling price)')
   rt = p1.newlistprint(rt)
        #print(f'the newlist1 is {newlist}')
+  print(f'the list-of-list are {fetch.sixlist},{fetch.fivelist},{fetch.fourlist},{fetch.threetlist},{fetch.twotlist},{fetch.onetlist},{fetch.bblist},{fetch.btlist}')
   rt = p1.newlistprint(rt,p1.sevenlist,p1.cap7,"sevenlist")
   rt = p1.newlistprint(rt,fetch.sixlist,fetch.cap6,"sixlist")
   rt = p1.newlistprint(rt,fetch.fivelist,fetch.cap5,"fivelist")
