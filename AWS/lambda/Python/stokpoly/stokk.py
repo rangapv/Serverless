@@ -94,7 +94,7 @@ class fetch:
        myList = [stock_dict1 [i][0] for i in sorted(stock_dict1.keys()) ]
        myList1 = [(i,stock_dict1 [i][0],stock_dict1 [i][2], stock_dict1 [i][3]) for i in sorted(stock_dict1.keys()) ]
        print(f'mylist1 is {myList1}')
-       datelist = (list(stock_dict1.values())[1])
+       datelist = (list(stock_dict1.values())[0])
        uplist = sorted(myList1,key=lambda x: x[1])
        print(f'uplist is {uplist}')
        uplist1 = sorted(myList1,key=lambda x: x[0])
@@ -127,15 +127,15 @@ class fetch:
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
        print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
-       onetlist = []
-       twotlist = []
-       threetlist = []
-       fourlist = []
-       fivelist = []
-       sixlist = []
-       sevenlist = []
-       bblist = []
-       btlist = [] 
+       self.onetlist = []
+       self.twotlist = []
+       self.threetlist = []
+       self.fourlist = []
+       self.fivelist = []
+       self.sixlist = []
+       self.sevenlist = []
+       self.bblist = []
+       self.btlist = [] 
        for x2 in revlist:
            a1 = float(x2[2])
            fp1 = float(x2[3])
