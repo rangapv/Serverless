@@ -126,8 +126,8 @@ class fetch:
                total4 = numerize.numerize(total1,4)
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
-       print(f'for debug onet {self.onetlist}, two {self.twotlist}, three {self.threetlist}, four {self.fourlist}, five {self.fivelist}, six {self.sixlist}, btlist {self.btlist}, bblist {self.bblist}')
-       print(f'the list-of-list are {self.sixlist},{self.fivelist},{self.fourlist},{self.threetlist},{self.twotlist},{self.onetlist},{self.bblist},{self.btlist}')
+       print(f'for debug onet {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
+       print(f'the list-of-list are {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
        for x2 in revlist:
            a1 = float(x2[2])
            fp1 = float(x2[3])
@@ -139,12 +139,12 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.onetlist if x2[0] in i]
+            res = [i for i in fetch.onetlist if x2[0] in i]
             print(f'processing append-list for {x2[0]}')
             if res:
               print(f'already added to list {res}')
             else:
-              self.onetlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+              fetch.onetlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 2000000000000 <= x2[1] < 3000000000000:
             reqprice = ( self.cap32 / fp1 )
             cprice = ( self.cap33 / fp1 )
@@ -152,11 +152,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.twotlist if x2[0] in i]
+            res = [i for i in fetch.twotlist if x2[0] in i]
             if res: 
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.twotlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+              fetch.twotlist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 500000000000 <= x2[1] < 1000000000000:
             reqprice = ( self.cap30 / fp1 )
             cprice = ( self.cap31 / fp1 )
@@ -164,20 +164,20 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.bblist if x2[0] in i]
+            res = [i for i in fetch.bblist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.bblist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
+              fetch.bblist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
            if 0 <= x2[1] < 500000000000:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.btlist if x2[0] in i]
+            res = [i for i in fetch.btlist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.btlist.append(f'{x2[0]} Ceiling - $ {cprice2}')
+              fetch.btlist.append(f'{x2[0]} Ceiling - $ {cprice2}')
            if 3000000000000 <= x2[1] < 4000000000000:
             reqprice = ( self.cap33 / fp1 )
             cprice = ( self.cap34 / fp1 )
@@ -185,11 +185,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.threetlist if x2[0] in i]
+            res = [i for i in fetch.threetlist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.threetlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              fetch.threetlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
            if 4000000000000 <= x2[1] < 5000000000000:
             reqprice = ( self.cap34 / fp1 )
             cprice = ( self.cap35 / fp1 )
@@ -197,11 +197,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fourlist if x2[0] in i]
+            res = [i for i in fetch.fourlist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.fourlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              fetch.fourlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
            if 5000000000000 <= x2[1] < 6000000000000:
             reqprice = ( self.cap35 / fp1 )
@@ -210,11 +210,11 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.fivelist if x2[0] in i]
+            res = [i for i in fetch.fivelist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.fivelist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              fetch.fivelist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
            if 6000000000000 <= x2[1] < 7000000000000:
             reqprice = ( self.cap36 / fp1 )
@@ -223,16 +223,16 @@ class fetch:
             reqprice2 = format(reqprice1,'.7')
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
-            res = [i for i in self.sixlist if x2[0] in i]
+            res = [i for i in fetch.sixlist if x2[0] in i]
             if res:
               print(f'already added to list {res} {x2[0]}')
             else:
-              self.sixlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
+              fetch.sixlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        print(f'The length of revlist, which contains the sorted final display of companies {len(revlist)}') 
-       print(f'the list-of-list are {self.sixlist},{self.fivelist},{self.fourlist},{self.threetlist},{self.twotlist},{self.onetlist},{self.bblist},{self.btlist}')
+      {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
        
        i = 1
        newlist = []
