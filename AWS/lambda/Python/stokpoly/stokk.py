@@ -229,10 +229,9 @@ class fetch:
             else:
               fetch.sixlist.append(f'{x2[0]} f/c - $ {reqprice2}/$ {cprice2}')
 
-
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        print(f'The length of revlist, which contains the sorted final display of companies {len(revlist)}') 
-      {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
+       print(f'the list-of-list {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
        
        i = 1
        newlist = []
