@@ -127,6 +127,15 @@ class fetch:
 
        #print(f'the total Market cap of the Top {cin} companies in the US is {total2}')
        print(f'for debug onet {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
+       fetch.onetlist = []
+       fetch.twotlist = []
+       fetch.threetlist = []
+       fetch.fourlist = []
+       fetch.fivelist = []
+       fetch.sixlist = []
+       fetch.sevenlist = []
+       fetch.bblist = []
+       fetch.btlist = []
        print(f'the list-of-list are {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
        for x2 in revlist:
            a1 = float(x2[2])
@@ -231,6 +240,7 @@ class fetch:
 
        print(f'TOP most-valuable-company from the list as of {datelist[1]}\n')
        print(f'The length of revlist, which contains the sorted final display of companies {len(revlist)}') 
+       print(f'the total companies in the final grouped comanies are {sum(len(g) for g in [fetch.sevenlist,fetch.sixlist,fetch.fivelist,fetch.fourlist,fetch.threetlist,fetch.twotlist,fetch.onetlist,fetch.bblist,fetch.btlist])}')
        print(f'the list-of-list {fetch.onetlist}, two {fetch.twotlist}, three {fetch.threetlist}, four {fetch.fourlist}, five {fetch.fivelist}, six {fetch.sixlist}, btlist {fetch.btlist}, bblist {fetch.bblist}')
        
        i = 1
