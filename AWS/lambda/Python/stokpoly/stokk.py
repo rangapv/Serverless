@@ -178,7 +178,7 @@ class fetch:
               print(f'already added to list {res} {x2[0]}')
             else:
               fetch.bblist.append(f'{x2[0]} f/c - $ {reqprice2} / $ {cprice2}')
-           if 0 <= x2[1] < 500000000000:
+           if 0 < x2[1] < 500000000000:
             cprice = ( self.cap30 / fp1 )
             cprice1 = Decimal(cprice)
             cprice2 = format(cprice1,'.7')
