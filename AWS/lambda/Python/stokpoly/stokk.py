@@ -304,56 +304,62 @@ class fetch:
         else: 
          apicount += 1
          #details = client11.get_ticker_details(x)
-         outstand1 = client11.get_ticker_details(x)
-         #print(f'outstand values {outstand1}')
-         apicount += 1
-         detailcap1 = outstand1.market_cap
-         print(f'{x} marketcap is{detailcap1}')
-         p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
-         l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
-         print(l23)
-         p5 = l23.stdout
-         #print(p5)
-         r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
-         l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)
-         #print(l24)
-         p6 = l24.stdout
-         #print(f'tickr is {p6}')
-         #share_outstand = outstand1.share_class_shares_outstanding
-         share_outstand = outstand1.weighted_shares_outstanding
-         num1 = float(p6)
-         num2 = float(share_outstand)
-         marketcap = ( num1 * num2 )
-         detailcap = marketcap
-         print(f'marketcap is {marketcap}')
-         if detailcap > 0:
-            diff1 = float(detailcap1 - marketcap)
-            print(f'the diff1 is $ {numerize.numerize(diff1,4)}')
-         else:
-            diff2 = float(marketcap - detailcap1)
-            detailcap = detailcap1
-            print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
+         try: 
+            outstand1 = client11.get_ticker_details(x)
+         except:
+             print(f'error in getting ticker details')
+             #stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
+             stock_dict2 = { **stock_dict2, x : [ 0 , 0 , 0, 0] }
+         else:    
+            #print(f'outstand values {outstand1}')
+            apicount += 1
+            detailcap1 = outstand1.market_cap
+            print(f'{x} marketcap is{detailcap1}')
+            p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
+            l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
+            print(l23)
+            p5 = l23.stdout
+            #print(p5)
+            r4 = "awk \'{split($0,a,\"=\");print (a[2])}\'"
+            l24 = subprocess.run(['echo "{}" | {}'.format(p5,r4)], capture_output=True, shell=True, text=True, check=False)
+            #print(l24)
+            p6 = l24.stdout
+            #print(f'tickr is {p6}')
+            #share_outstand = outstand1.share_class_shares_outstanding
+            share_outstand = outstand1.weighted_shares_outstanding
+            num1 = float(p6)
+            num2 = float(share_outstand)
+            marketcap = ( num1 * num2 )
+            detailcap = marketcap
+            print(f'marketcap is {marketcap}')
+            if detailcap > 0:
+              diff1 = float(detailcap1 - marketcap)
+              print(f'the diff1 is $ {numerize.numerize(diff1,4)}')
+            else:
+              diff2 = float(marketcap - detailcap1)
+              detailcap = detailcap1
+              print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
 
-         if (apicount % 5 == 0):
-            time.sleep(60)
-         aggs1 = aggs[0]
-         #print(f'aggs1 is {aggs1}')
-         pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
-         l21 = pl.stdout
-         p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
-         l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
-         l23 = l22.stdout
-         p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
-         l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
-         p5 = l23.stdout
-         now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-         now2 = datetime.datetime.now().strftime('%d-%m-%y')
-         t21 = p5[:10]
-         t1 = int(t21)
-         t2 = time.ctime(t1)
-         stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
-         #p1.printout()
-         #print(stock_dict2)
+            if (apicount % 5 == 0):
+               time.sleep(60)
+               aggs1 = aggs[0]
+               #print(f'aggs1 is {aggs1}')
+               pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
+               l21 = pl.stdout
+               p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
+               l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
+               l23 = l22.stdout
+               p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
+               l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
+               p5 = l23.stdout
+               now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+               now2 = datetime.datetime.now().strftime('%d-%m-%y')
+               t21 = p5[:10]
+               t1 = int(t21)
+               t2 = time.ctime(t1)
+               stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
+               #p1.printout()
+               #print(stock_dict2)
        return stock_dict2
 
 #main BEGINS
