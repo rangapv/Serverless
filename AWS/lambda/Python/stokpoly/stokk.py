@@ -346,26 +346,26 @@ class fetch:
               detailcap = detailcap1
               print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
 
-         if (apicount % 5 == 0):
+            if (apicount % 5 == 0):
                time.sleep(60)
-               aggs1 = aggs[0]
-               #print(f'aggs1 is {aggs1}')
-               pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
-               l21 = pl.stdout
-               p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
-               l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
-               l23 = l22.stdout
-               p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
-               l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
-               p5 = l23.stdout
-               now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
-               now2 = datetime.datetime.now().strftime('%d-%m-%y')
-               t21 = p5[:10]
-               t1 = int(t21)
-               t2 = time.ctime(t1)
-               stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
-               #p1.printout()
-               #print(stock_dict2)
+            aggs1 = aggs[0]
+            #print(f'aggs1 is {aggs1}')
+            pl = subprocess.run(['echo "{}" | grep timestamp'.format(aggs1)], capture_output=True, shell=True, text=True, check=False)
+            l21 = pl.stdout
+            p3 = "awk \'{split($0,a,\",\"); print a[6]}\'"
+            l22 = subprocess.run(['echo "{}" | {}'.format(l21,p3)], capture_output=True, shell=True, text=True, check=False)
+            l23 = l22.stdout
+            p4 = "awk \'{split($0,a,\"=\"); print a[2]}\'"
+            l23 = subprocess.run(['echo "{}" | {}'.format(l23,p4)], capture_output=True, shell=True, text=True, check=False)
+            p5 = l23.stdout
+            now1 = datetime.datetime.now().strftime("%A, %d. %B %Y %I:%M%p")
+            now2 = datetime.datetime.now().strftime('%d-%m-%y')
+            t21 = p5[:10]
+            t1 = int(t21)
+            t2 = time.ctime(t1)
+            stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
+            #p1.printout()
+            #print(stock_dict2)
        return stock_dict2
 
 #main BEGINS
