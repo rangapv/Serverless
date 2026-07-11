@@ -306,15 +306,6 @@ class fetch:
          #details = client11.get_ticker_details(x)
          try: 
             outstand1 = client11.get_ticker_details(x)
-         except:
-             print(f'error in getting ticker details')
-             #stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
-             stock_dict2 = { **stock_dict2, x : [ 0 , 0 , 0, 0] }
-         else:    
-            #print(f'outstand values {outstand1}')
-            apicount += 1
-            detailcap1 = outstand1.market_cap
-            print(f'{x} marketcap is{detailcap1}')
             p4 = "awk \'{split($0,a,\",\");print (a[2])}\'"
             l23 = subprocess.run(['echo "{}" | {}'.format(aggs[0],p4)], capture_output=True, shell=True, text=True, check=False)
             print(l23)
@@ -325,9 +316,18 @@ class fetch:
             #print(l24)
             p6 = l24.stdout
             #print(f'tickr is {p6}')
+            num1 = float(p6)
+         except:
+             print(f'error in getting ticker details')
+             #stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
+             stock_dict2 = { **stock_dict2, x : [ 0 , 0 , num1, 0] }
+         else:    
+            #print(f'outstand values {outstand1}')
+            apicount += 1
+            detailcap1 = outstand1.market_cap
+            print(f'{x} marketcap is{detailcap1}')
             #share_outstand = outstand1.share_class_shares_outstanding
             share_outstand = outstand1.weighted_shares_outstanding
-            num1 = float(p6)
             num2 = float(share_outstand)
             marketcap = ( num1 * num2 )
             detailcap = marketcap
