@@ -346,7 +346,7 @@ class fetch:
               detailcap = detailcap1
               print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
 
-            if (apicount % 5 == 0):
+         if (apicount % 5 == 0):
                time.sleep(60)
                aggs1 = aggs[0]
                #print(f'aggs1 is {aggs1}')
