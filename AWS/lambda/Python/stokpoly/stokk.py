@@ -316,6 +316,8 @@ class fetch:
             #print(l24)
             p6 = l24.stdout
             #print(f'tickr is {p6}')
+            if p6 is None:
+              p6 = 0
             num1 = float(p6)
          except:
              print(f'error in getting ticker details')
