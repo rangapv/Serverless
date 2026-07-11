@@ -326,6 +326,7 @@ class fetch:
              print(f'error in getting ticker details')
              #stock_dict2 = { **stock_dict2, x : [ detailcap , t2 , num1, share_outstand] }
              stock_dict2 = { **stock_dict2, x : [ 0 , 0 , num1, 0] }
+             #continue
          else:    
             print(f'outstand values {outstand1}')
             apicount += 1
@@ -345,7 +346,7 @@ class fetch:
               detailcap = detailcap1
               print(f'the diff2 is $ {numerize.numerize(diff2,4)}')
 
-        if (apicount % 5 == 0):
+            if (apicount % 5 == 0):
                time.sleep(60)
                aggs1 = aggs[0]
                #print(f'aggs1 is {aggs1}')
