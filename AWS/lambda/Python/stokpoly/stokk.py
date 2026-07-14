@@ -394,6 +394,8 @@ def handler(event, context):
   stock_dict = {}
   new24_dict = p1.getit(client1,list1,stock_dict,apicount)
   print(f'after getit the list is {new24_dict}')
+  print(f'the tickers are {list(new24_dict)} the length is {len(list(new24_dict))}')
+  print(f'the missing tickers are {list(list1 - list(new24_dict))}')
   print(f'the length of new24_dict is {len(new24_dict)}')
   rt = p1.ascend(new24_dict)
   print(f'after ascend rt is {rt}')
@@ -422,6 +424,7 @@ def handler(event, context):
   print(f'the total companies considered in the survey is {len(list1)}')
   print(f'the total companies in the final grouped comanies are {sum(len(g) for g in [p1.sevenlist,p1.sixlist,p1.fivelist,p1.fourlist,p1.threetlist,p1.twotlist,p1.onetlist,p1.bblist,p1.btlist])}')
   rt.append(list1)
+  rt.append(f'the missing tickers are {list(list1 - list(new24_dict))} and there count is {len(list(list1 - list(new24_dict)))}')
   rt.append(f'the execution context is for-logs- {container_id}')
   print(f'rt is {rt}')
   return rt
